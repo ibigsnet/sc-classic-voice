@@ -1,0 +1,16 @@
+# Full stock extracts are CIG data — keep local only (symlinks or copies)
+corpus/*.ini
+corpus/*.ini.bak
+!corpus/README.md
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor
+.idea/
+.vscode/
+*~
+.DS_Store

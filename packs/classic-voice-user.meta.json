@@ -1,0 +1,51 @@
+{
+  "target": "4.10.0-PTU",
+  "min_score": 10.0,
+  "key_count": 4,
+  "entries": [
+    {
+      "key": "Journal_General_FrontendNewspaperHeadlines_Content",
+      "source_version": "4.5.0-LIVE",
+      "score": 50.36,
+      "edge_lost": [
+        "execute"
+      ],
+      "euphemism_hits": []
+    },
+    {
+      "key": "headhunters_bombingrun_multi_E_CFP_desc_001",
+      "source_version": "4.7.0-LIVE",
+      "score": 53.15,
+      "edge_lost": [
+        "living_hell",
+        "bomb_the_living",
+        "hell"
+      ],
+      "euphemism_hits": [
+        "'bomb the living hell out of'\u2192'really mess the place up'"
+      ]
+    },
+    {
+      "key": "headhunters_Nyx_bombingrun_M_desc_001",
+      "source_version": "4.7.0-LIVE",
+      "score": 27.0,
+      "edge_lost": [
+        "bomb_the_life"
+      ],
+      "euphemism_hits": [
+        "'bomb the life out of'\u2192'blow the life out of'"
+      ]
+    },
+    {
+      "key": "headhunters_bombingrun_S_desc_001",
+      "source_version": "4.7.0-LIVE",
+      "score": 27.0,
+      "edge_lost": [
+        "bombing_run"
+      ],
+      "euphemism_hits": [
+        "'bombing run'\u2192'attack'"
+      ]
+    }
+  ]
+}
