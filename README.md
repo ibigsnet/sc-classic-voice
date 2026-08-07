@@ -1,19 +1,30 @@
 # sc-classic-voice
 
-**Restore less-softened Star Citizen localization wording** across patch history.
+**Put the teeth back in Star Citizen’s text.**
 
-CIG occasionally rewrites mission and narrative strings toward softer / more corporate language (“bomb the living hell out of the area” → “really mess the place up”). This project:
+Star Citizen used to sound like a hard sci-fi outlaw sandbox: rough contract briefings, blunt violence, Headhunters who talk like criminals. Over recent patches, Cloud Imperium has been sanding that down—mission copy gets softer, more corporate, more “please don’t offend anyone.” Edge becomes euphemism. “Bomb the living hell out of the area” becomes “really mess the place up.” That’s not polish. That’s the studio leaning **woke-adjacent / soy-safe** with the fiction, and it drags the whole game’s personality with it.
 
-1. **Maps** those changes across versioned stock `global.ini` extracts  
-2. **Builds** a delta pack that re-applies the older wording on keys that still exist  
-3. **Integrates** cleanly with [Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen) via **Import INI** → user overrides  
+**This project exists to push back.**
 
-This is a **fan localization overlay** (same class of mod as community language packs). Not affiliated with CIG / RSI.
+We track wording changes across stock localization history and build **fan localization packs** that restore the less-softened (older, sharper) strings wherever those keys still exist. You can drop the pack into your install—or import it into [Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen)—and undo the studio’s recent tone policing in your client without waiting for CIG to grow a spine.
+
+### What we believe
+- A mercenary game should **sound** like a mercenary game.  
+- Softening every contract for maximum mass-market comfort is the **wrong direction**.  
+- Players should be free to run **classic voice** on their own machines.  
+- Localization overlays are the lawful, CIG-discussed channel for community string work—we use that lane to reject the watered-down rewrites.
+
+### What this repo does
+1. **Maps** softens across versioned stock `global.ini` extracts (4.3 → 4.10 and expanding)  
+2. **Builds** a delta pack that re-applies older wording on keys that still exist  
+3. **Integrates** with Smart Citizen via **Import INI** → user overrides (enhancements + classic voice together)  
+
+This is a **fan localization overlay** (same class as community language packs). Not affiliated with CIG / RSI. Opinions in this README are the project’s; the tooling is MIT.
 
 ## Why not a full Smart Citizen fork?
 
 Smart Citizen already does extract, merge, BP/XP enhancements, and Apply.  
-**sc-classic-voice** only owns the *historical wording preference* layer — a small `user.ini`-style delta that Smart Citizen can import so your classic voice coexists with their auto enhancements.
+**sc-classic-voice** is the *anti-soften / classic voice* layer—a small `user.ini`-style delta you import so their auto enhancements and our restored wording stack cleanly. Use both.
 
 ## Quick start
 
