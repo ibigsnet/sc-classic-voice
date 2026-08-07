@@ -35,6 +35,10 @@ This is a **fan localization overlay** (same class as community language packs).
 Smart Citizen already does extract, merge, BP/XP enhancements, and Apply.  
 **sc-classic-voice** is the *anti-soften / classic voice* layer—a small `user.ini`-style delta you import so their auto enhancements and our restored wording stack cleanly. Use both.
 
+## Roadmap
+
+See **[ROADMAP.md](ROADMAP.md)** for phases to full product (corpus, review, releases, patch loop).
+
 ## Quick start
 
 ### 1. Corpus (local stock extracts)
