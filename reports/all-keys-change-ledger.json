@@ -17,7 +17,7 @@
   "pairwise_text_changes": 1727,
   "steps_softened": 14,
   "steps_hardened": 19,
-  "pack_keys": 1512,
+  "pack_keys": 1263,
   "softened_steps": [
     {
       "key": "headhunters_bombingrun_multi_E_CFP_desc_001",

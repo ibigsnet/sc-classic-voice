@@ -1,28 +1,27 @@
 # How we detect harder vs softer wording
 
-This page documents **how sc-classic-voice scores and chooses** “hard / unsoftened” vs “soft / current CIG” text.  
-Detection is **rule-based** (keyword and phrase heuristics), not an LLM or machine-learning model.
+This page documents **how sc-classic-voice scores and chooses** “hard / unsoftened” vs “soft / current CIG” text.
 
 ---
 
-## Big picture
+## Big picture (what we actually do)
 
-Two layers:
+**Primary path is not “hardcode a swear list and hope.”** It is:
 
-1. **Map changes** — whenever the same localization **key** has different text between stock versions  
-2. **Score hardness** — keyword/phrase rules so packs prefer older **harder** wording  
-
-We do **not** do full NLP “sentiment analysis.” We look for known **edge words** and **soft/corporate** phrases, plus known hard→soft swaps.
+1. **Compare all differences** — every key, every banked version, full text history  
+2. **Choose smartly among those differences** — similarity-aware pick (near-rewrites → prefer oldest; big lore rewrites → only if clearly harder)  
+3. **Keyword lists are secondary boosts** — they refine hardness scoring; they do not replace the full compare  
 
 ```text
-stock A (older) ──diff──► stock B (newer)
-        │
-        ├─ edge tags lost?  → soften candidate
-        ├─ euphemism pair?  → soften candidate
-        └─ hardness_score(old) > hardness_score(new)?
-                 │
-                 ▼
-         pack uses older/harder text on CURRENT builds
+For each key on CURRENT stock:
+  history = all older stock texts for that key
+  if never changed → skip
+  among different historical texts:
+    if ≈same sentence as current (high similarity) → PREFER OLDEST
+       (catches living hell → mess the place up without needing that pair hard-coded)
+    if medium rewrite → prefer higher hardness, then older
+    if totally different text → only take older if clearly harder
+  keyword boosts help rank hardness; word-diff (tokens only in old vs new) helps too
 ```
 
 ---
@@ -140,21 +139,30 @@ High score → likely intentional soften → listed in `reports/soften-map.md`.
 
 ---
 
-## Step 6: Choose wording for the pack
+## Step 6: Choose wording for the pack (smart pick)
+
+Function: `pick_best_historical()` in `scripts/build_classic_all.py`.
 
 For each key on **current** (target) stock:
 
-1. Look at all **older** stocks that have that key  
-2. Score each historical string with `hardness_score`  
-3. **Winner = highest hardness; ties → oldest version**  
-4. If winner is harder (or ≥ as hard, depending on pack) than current soft text → include in the delta pack  
+1. Collect **all** older texts that differ from target (full history compare)  
+2. For each candidate, compute **similarity** to current text + hardness + word-diff  
+3. Rank by band:
+
+| Similarity to current | Decision |
+|----------------------|----------|
+| **High (≥ ~0.88)** | Same sentence, lightly rewritten → **prefer OLDEST** different text (main soften case) |
+| **Medium (~0.45–0.88)** | Prefer **harder**, then older; word-diff (unique words only in old) as boost |
+| **Low (< ~0.45)** | Major rewrite / new lore → **only** take older if **clearly harder** (avoid stomping real content updates) |
+
+Keyword hardness is a **score input**, not the only gate. High-sim softens like living hell → mess the place up are caught because the strings are almost the same, not only because we listed that pair.
 
 ### Example
 
-| Version | Snippet | Hardness (approx) |
-|---------|---------|-------------------:|
-| 4.3–4.7 | bomb the **living hell** out of the area | high (~90) |
-| 4.8–4.10 | really **mess the place up** | low (~7) |
+| Version | Snippet | Why chosen |
+|---------|---------|------------|
+| 4.3–4.7 | bomb the **living hell** out of the area | High similarity to 4.10; oldest wins |
+| 4.8–4.10 | really **mess the place up** | Soft stock baseline |
 
 → Pack ships **living hell** for current builds.
 

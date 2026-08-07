@@ -6,7 +6,7 @@
 - Pairwise text changes (any wording change): **1727**
 - Steps scored as **softened** (hardness dropped): **14**
 - Steps scored as **hardened**: **19**
-- Pack keys (harder than target, applied to current): **1512**
+- Pack keys (harder than target, applied to current): **1263**
 
 ## Policy
 

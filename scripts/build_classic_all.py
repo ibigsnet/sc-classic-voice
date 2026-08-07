@@ -73,7 +73,11 @@ HARD_BOOST_PHRASES = [
 
 
 def hardness_score(text: str) -> float:
-    """Higher = harder / more OG-unsoftened voice."""
+    """Higher = harder / more OG-unsoftened voice.
+
+    Keyword lists are *boosts*, not the only signal. Primary selection uses
+    full text history + similarity (see pick_best_historical).
+    """
     t = plain(text)
     score = 0.0
     for name, pat in EDGE_PATTERNS:
@@ -89,6 +93,100 @@ def hardness_score(text: str) -> float:
     if len(t) > 200:
         score += 1.0
     return score
+
+
+def word_set(text: str) -> set[str]:
+    return set(re.findall(r"[a-zA-Z']+", plain(text).lower()))
+
+
+def unique_word_edge(old: str, new: str) -> float:
+    """
+    Diff-based signal without a huge lexicon: words only in older vs only in newer.
+    Slightly prefer older if it has more unique content words (often the removed edge).
+    """
+    o, n = word_set(old), word_set(new)
+    only_old = o - n
+    only_new = n - o
+    # ignore very common words
+    stop = {
+        "the", "a", "an", "and", "or", "to", "of", "in", "on", "for", "is", "are",
+        "be", "this", "that", "with", "at", "as", "it", "you", "we", "they", "from",
+        "will", "can", "have", "has", "been", "was", "were", "by", "not", "but",
+    }
+    only_old = {w for w in only_old if w not in stop and len(w) > 2}
+    only_new = {w for w in only_new if w not in stop and len(w) > 2}
+    return float(len(only_old) - len(only_new))
+
+
+def pick_best_historical(
+    candidates: list[tuple[str, str, float]],
+    tval: str,
+    older_labels: list[str],
+    *,
+    require_harder: bool,
+    min_hardness_gain: float,
+) -> tuple[str, str, float, str] | None:
+    """
+    Smart pick among historical (label, value, hardness) vs target tval.
+
+    Priority (not hardcoded-only):
+      1. HIGH similarity to target (≥0.88): same sentence rewritten → prefer
+         OLDEST different text (classic soften / euphemism case).
+      2. MED similarity (0.45–0.88): prefer higher hardness, then older;
+         word-diff boost for tokens only in older.
+      3. LOW similarity (<0.45): major rewrite → only take older if clearly
+         harder (avoid restoring obsolete lore as "tone").
+
+    Returns (label, value, hardness, reason) or None.
+    """
+    t_hard = hardness_score(tval)
+    t_plain = plain(tval)
+
+    # Rank candidates with a sort key (higher tuple wins)
+    ranked: list[tuple] = []
+    for lab, val, h in candidates:
+        if val == tval:
+            continue
+        sim = SequenceMatcher(None, plain(val), t_plain).ratio()
+        age = older_labels.index(lab)  # smaller = older
+        wdiff = unique_word_edge(val, tval)
+        h_gain = h - t_hard
+
+        if sim >= 0.88:
+            # Near-paraphrase: age is king; hardness/word-diff break ties
+            sort_key = (3, -age, h_gain, wdiff, h)
+            reason = f"high_sim={sim:.3f}_prefer_oldest"
+        elif sim >= 0.45:
+            sort_key = (2, h_gain, wdiff, h, -age)
+            reason = f"med_sim={sim:.3f}_prefer_harder"
+        else:
+            # Major rewrite — only compete if clearly harder
+            if h_gain <= max(min_hardness_gain, 5.0):
+                continue
+            sort_key = (1, h_gain, h, -age)
+            reason = f"low_sim={sim:.3f}_harder_only"
+
+        ranked.append((sort_key, lab, val, h, reason, sim, h_gain))
+
+    if not ranked:
+        return None
+
+    ranked.sort(key=lambda x: x[0], reverse=True)
+    _sk, lab, val, h, reason, sim, h_gain = ranked[0]
+
+    if require_harder:
+        # high-sim softens: always allow oldest even if hardness score is flat
+        if sim < 0.88 and h_gain <= min_hardness_gain:
+            if not (
+                h_gain >= -0.01 and len(edge_hits(val)) > len(edge_hits(tval))
+            ):
+                return None
+    else:
+        # at-least-as-hard OR high-sim older rewrite
+        if sim < 0.88 and h_gain < min_hardness_gain:
+            return None
+
+    return lab, val, h, f"{reason};gain={h_gain:.1f}"
 
 
 @dataclass
@@ -172,7 +270,7 @@ def main() -> None:
                 )
             )
 
-    # --- Per-key pick oldest/harder for target ---
+    # --- Per-key smart pick: all historical diffs, then older/harder ---
     for key, tval in target_ini.items():
         candidates: list[tuple[str, str, float]] = []  # label, value, hardness
         for lab in older_labels:
@@ -182,61 +280,32 @@ def main() -> None:
             candidates.append((lab, val, hardness_score(val)))
         if not candidates:
             continue
-        # include target as reference
         t_hard = hardness_score(tval)
-        # unique texts only
         texts = {c[1] for c in candidates}
         texts.add(tval)
         if len(texts) == 1:
+            continue  # never changed
+
+        picked = pick_best_historical(
+            candidates,
+            tval,
+            older_labels,
+            require_harder=args.require_harder,
+            min_hardness_gain=args.min_hardness_gain,
+        )
+        if picked is None:
             continue
-
-        # Best among historical (and optionally beat target)
-        # Sort: hardness desc, then older first (stable by walking older_labels order)
-        best_lab, best_val, best_h = None, None, -1e9
-        for lab, val, h in candidates:
-            if val == tval:
-                continue
-            better = h > best_h + 1e-6
-            tie_older = abs(h - best_h) <= 1e-6 and best_lab is not None
-            # on tie, prefer older (smaller index)
-            if better or (
-                abs(h - best_h) <= 1e-6
-                and (
-                    best_lab is None
-                    or older_labels.index(lab) < older_labels.index(best_lab)
-                )
-            ):
-                # only replace on tie if older
-                if abs(h - best_h) <= 1e-6 and best_lab is not None:
-                    if older_labels.index(lab) >= older_labels.index(best_lab):
-                        continue
-                best_lab, best_val, best_h = lab, val, h
-
-        if best_val is None:
-            continue
-
+        best_lab, best_val, best_h, reason = picked
         if best_val == tval:
             continue
 
         gain = best_h - t_hard
-        if args.require_harder:
-            # Must be strictly harder than current soft stock
-            if gain <= args.min_hardness_gain:
-                if not (
-                    gain >= -0.01
-                    and len(edge_hits(best_val)) > len(edge_hits(tval))
-                ):
-                    continue
-        else:
-            # At least as hard as target; older wording kept on ties
-            if gain < args.min_hardness_gain:
-                continue
-
         pack[key] = best_val
         meta.append(
             {
                 "key": key,
                 "chosen_version": best_lab,
+                "pick_reason": reason,
                 "hardness_chosen": round(best_h, 2),
                 "hardness_target": round(t_hard, 2),
                 "gain": round(gain, 2),
@@ -261,7 +330,8 @@ def main() -> None:
             f"{args.name}: older/harder wording for every key that changed across corpus\n"
             f"target={args.target}\n"
             f"keys={len(pack)}\n"
-            f"Policy: max hardness among historical stocks; ties → oldest\n"
+            f"Policy: full history compare; high-sim→oldest; med-sim→harder; "
+            f"low-sim→harder-only; keyword boosts secondary\n"
             f"require_harder={args.require_harder}\n"
             f"Smart Citizen: Import INI (delta vs current stock)"
         ),
