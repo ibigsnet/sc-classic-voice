@@ -2,6 +2,9 @@
 
 ## Goal
 
+Detection details (word lists, hardness formula): **[DETECTION.md](DETECTION.md)**.
+
+
 CIG softens strings over time. We:
 
 1. **Compare every key** across **every banked stock** (as far back as we have)  
