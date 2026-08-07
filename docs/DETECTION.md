@@ -37,7 +37,9 @@ For each **consecutive** pair of stocks in the corpus (e.g. 4.3.2 → 4.4 → �
 Also, for the **target** (current soft stock, e.g. 4.10.0-PTU): for each key, collect every older version’s text and compare.
 
 **Code:** `scripts/diff_builds.py`  
-**Reports:** `reports/build-diffs.md`, `reports/build-diffs.json`, `reports/key-history.json`
+**Reports:** `reports/build-diffs.md`, `reports/build-diffs.json`, `reports/key-history.json`  
+
+**Wording presentation:** every human report uses phrase-level VCS-style diffs (`scripts/phrase_diff.py`) — GitHub paints `-` red / `+` green so softens are obvious even when 95% of the sentence is unchanged.
 
 ---
 
@@ -115,7 +117,7 @@ score = 0
 
 ### Soft penalties (lower score)
 
-`SOFT_PATTERNS` in `scripts/build_classic_all.py`:
+Loaded from `wordlists/soft-words.txt` (via `wordlists.py`):
 
 | Soft phrase | Effect |
 |-------------|--------|
@@ -123,6 +125,17 @@ score = 0
 | take care of / deal with | −10 |
 | neutralize / eliminate / subdue / apprehend | −10 |
 | unfortunate / please note / kindly | −10 |
+
+### Showing the change (everywhere)
+
+All human reports call `scripts/phrase_diff.py`:
+
+| Output | What you see |
+|--------|----------------|
+| Change table | 🔴 removed / 🟢 added / 🔄 replaced phrases only |
+| Unified `diff` fence | `- old` (red on GitHub) / `+ new` (green) |
+| Inline (high-sim) | `~~removed~~` **added** with context |
+| Full previews | folded under `<details>` |
 
 ---
 

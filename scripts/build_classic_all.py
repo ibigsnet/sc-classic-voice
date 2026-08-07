@@ -35,6 +35,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ini_util import load_ini, plain, write_ini
 from map_softening import discover_versions, edge_hits
+from phrase_diff import format_markdown_diff, hunk_dicts, one_line_summary
 from wordlists import hardness_from_lists
 
 
@@ -154,6 +155,10 @@ class StepChange:
     similarity: float
     from_preview: str
     to_preview: str
+    from_full: str
+    to_full: str
+    diff_hunks: list[dict[str, str]]
+    diff_summary: str
 
 
 def main() -> None:
@@ -207,7 +212,8 @@ def main() -> None:
             if key not in b or b[key] == av:
                 continue
             ha, hb = hardness_score(av), hardness_score(b[key])
-            sim = SequenceMatcher(None, plain(av), plain(b[key])).ratio()
+            ap, bp = plain(av), plain(b[key])
+            sim = SequenceMatcher(None, ap, bp).ratio()
             step_changes.append(
                 StepChange(
                     key=key,
@@ -218,8 +224,12 @@ def main() -> None:
                     softened=hb < ha - 0.5,
                     hardened=hb > ha + 0.5,
                     similarity=round(sim, 4),
-                    from_preview=plain(av)[:220].replace("\n", " | "),
-                    to_preview=plain(b[key])[:220].replace("\n", " | "),
+                    from_preview=ap[:220].replace("\n", " | "),
+                    to_preview=bp[:220].replace("\n", " | "),
+                    from_full=ap,
+                    to_full=bp,
+                    diff_hunks=hunk_dicts(ap, bp),
+                    diff_summary=one_line_summary(ap, bp),
                 )
             )
 
@@ -254,6 +264,7 @@ def main() -> None:
 
         gain = best_h - t_hard
         pack[key] = best_val
+        bp, tp = plain(best_val), plain(tval)
         meta.append(
             {
                 "key": key,
@@ -263,12 +274,17 @@ def main() -> None:
                 "hardness_target": round(t_hard, 2),
                 "gain": round(gain, 2),
                 "similarity_to_target": round(
-                    SequenceMatcher(None, plain(best_val), plain(tval)).ratio(), 4
+                    SequenceMatcher(None, bp, tp).ratio(), 4
                 ),
                 "edge_chosen": edge_hits(best_val),
                 "edge_target": edge_hits(tval),
-                "chosen_preview": plain(best_val)[:200].replace("\n", " | "),
-                "target_preview": plain(tval)[:200].replace("\n", " | "),
+                "chosen_preview": bp[:200].replace("\n", " | "),
+                "target_preview": tp[:200].replace("\n", " | "),
+                "diff_hunks": hunk_dicts(bp, tp),
+                "diff_summary": one_line_summary(bp, tp),
+                # Full plain for ledger markdown only; stripped from pack meta JSON.
+                "_chosen_full": bp,
+                "_target_full": tp,
             }
         )
 
@@ -290,6 +306,16 @@ def main() -> None:
         ),
     )
 
+    def slim_step(s: StepChange) -> dict:
+        d = asdict(s)
+        d.pop("from_full", None)
+        d.pop("to_full", None)
+        return d
+
+    meta_public = []
+    for m in sorted(meta, key=lambda x: -x["gain"]):
+        meta_public.append({k: v for k, v in m.items() if not k.startswith("_")})
+
     meta_path = args.out_dir / f"{args.name}.meta.json"
     meta_path.write_text(
         json.dumps(
@@ -298,7 +324,8 @@ def main() -> None:
                 "policy": "max_hardness_then_oldest",
                 "require_harder": args.require_harder,
                 "key_count": len(pack),
-                "entries": sorted(meta, key=lambda m: -m["gain"]),
+                "diff_legend": "diff_hunks: phrase-level -old +new (phrase_diff.py)",
+                "entries": meta_public,
             },
             indent=2,
         ),
@@ -315,13 +342,19 @@ def main() -> None:
         "steps_softened": len(softens),
         "steps_hardened": len(hardens),
         "pack_keys": len(pack),
-        "softened_steps": [asdict(s) for s in sorted(softens, key=lambda x: x.hardness_from - x.hardness_to, reverse=True)],
-        "all_steps_sample": [asdict(s) for s in step_changes[:500]],
+        "diff_legend": "diff_hunks: phrase-level -old +new (phrase_diff.py)",
+        "softened_steps": [
+            slim_step(s)
+            for s in sorted(
+                softens, key=lambda x: x.hardness_from - x.hardness_to, reverse=True
+            )
+        ],
+        "all_steps_sample": [slim_step(s) for s in step_changes[:500]],
     }
-    # full steps is large — write separate full file
+    # full steps is large — write separate full file (hunks, no full bodies)
     full_steps_path = args.reports / "all-keys-step-changes.json"
     full_steps_path.write_text(
-        json.dumps([asdict(s) for s in step_changes], indent=2),
+        json.dumps([slim_step(s) for s in step_changes], indent=2),
         encoding="utf-8",
     )
     (args.reports / "all-keys-change-ledger.json").write_text(
@@ -339,6 +372,12 @@ def main() -> None:
         f"- Steps scored as **hardened**: **{len(hardens)}**",
         f"- Pack keys (harder than target, applied to current): **{len(pack)}**",
         "",
+        "### How to read diffs",
+        "",
+        "Each restore shows a **phrase-level wording diff** "
+        "(GitHub paints `-` red / `+` green). Same style as spotlight, "
+        "soften-map, and build-diffs via `scripts/phrase_diff.py`.",
+        "",
         "## Policy",
         "",
         "1. For every key on the target build, look at all older stocks that have it.",
@@ -355,24 +394,59 @@ def main() -> None:
             f"### `{m['key']}`  (+{m['gain']} hard)  ← `{m['chosen_version']}`"
         )
         md.append(f"- Edge: {m['edge_chosen']} → target had {m['edge_target']}")
+        md.append(f"- Pick: `{m['pick_reason']}`")
+        md.append("")
+        md.append(
+            format_markdown_diff(
+                m["_chosen_full"],
+                m["_target_full"],
+                f"chosen ({m['chosen_version']})",
+                "target (soft stock)",
+                include_inline=m["similarity_to_target"] >= 0.85,
+            )
+        )
+        md.append("<details>")
+        md.append("<summary>Full previews</summary>")
+        md.append("")
         md.append(f"- **Chosen:** {m['chosen_preview']}")
         md.append(f"- **Target (soft stock):** {m['target_preview']}")
+        md.append("")
+        md.append("</details>")
         md.append("")
 
     md += [
         "## Top soften steps (history receipts)",
         "",
     ]
-    for s in sorted(softens, key=lambda x: x.hardness_from - x.hardness_to, reverse=True)[:40]:
+    for s in sorted(
+        softens, key=lambda x: x.hardness_from - x.hardness_to, reverse=True
+    )[:40]:
         md.append(
             f"### `{s.key}`  {s.from_version} → {s.to_version}  "
             f"(hard {s.hardness_from} → {s.hardness_to})"
         )
+        md.append("")
+        md.append(
+            format_markdown_diff(
+                s.from_full,
+                s.to_full,
+                s.from_version,
+                s.to_version,
+                include_inline=s.similarity >= 0.85,
+            )
+        )
+        md.append("<details>")
+        md.append("<summary>Full previews</summary>")
+        md.append("")
         md.append(f"- **From:** {s.from_preview}")
         md.append(f"- **To:** {s.to_preview}")
         md.append("")
+        md.append("</details>")
+        md.append("")
 
-    (args.reports / "all-keys-change-ledger.md").write_text("\n".join(md), encoding="utf-8")
+    (args.reports / "all-keys-change-ledger.md").write_text(
+        "\n".join(md), encoding="utf-8"
+    )
 
     print(f"Pairwise wording changes: {len(step_changes)}")
     print(f"Softened steps: {len(softens)}  Hardened steps: {len(hardens)}")

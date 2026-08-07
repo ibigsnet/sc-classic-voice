@@ -40,11 +40,14 @@ Smart Citizen already does extract, merge, BP/XP enhancements, and Apply.
 
 ## Examples (hard vs soft)
 
-**Clear side-by-side map of real softens** (living hell → mess the place up, etc.) and full coverage status:
+**Clear side-by-side map of real softens** (living hell → mess the place up, etc.) and full coverage status.
+
+Every report uses **VCS-style wording diffs** (GitHub paints `-` red / `+` green) via `scripts/phrase_diff.py` — not wall-of-text tables that hide the edit.
 
 → **[docs/EXAMPLES.md](docs/EXAMPLES.md)**  
 → **[docs/DETECTION.md](docs/DETECTION.md)** — how hard vs soft detection works  
-→ **[wordlists/](wordlists/)** — hard-words / soft-words / euphemism pairs (editable)
+→ **[wordlists/](wordlists/)** — hard-words / soft-words / euphemism pairs (editable)  
+→ **[reports/spotlight-hard-vs-soft-4.7-4.8.md](reports/spotlight-hard-vs-soft-4.7-4.8.md)** — flagship red/green deep dive
 
 ## Download packs
 

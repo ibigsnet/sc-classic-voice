@@ -138,11 +138,28 @@ The **anti-soft pack** only **overrides** keys where older text wins on **hardne
 
 ## How to re-read the maps on GitHub
 
+**Every report uses VCS-style wording diffs** (shared `scripts/phrase_diff.py`):
+
+- Change table: only the tokens that moved  
+- Unified `diff` fence: GitHub paints `-` **red** / `+` **green**  
+- High-sim softens also get inline `~~removed~~` / `**added**`  
+- Full string previews folded under `<details>`  
+
 1. **This page** — human examples  
-2. [`reports/build-diffs.md`](../reports/build-diffs.md) — full consecutive change counts + samples  
-3. [`reports/all-keys-change-ledger.md`](../reports/all-keys-change-ledger.md) — hardness ledger  
-4. [`reports/hard-to-soft-examples.json`](../reports/hard-to-soft-examples.json) — machine list of hardness wins vs target  
-5. [`reports/spotlight-hard-vs-soft-4.7-4.8.md`](../reports/spotlight-hard-vs-soft-4.7-4.8.md) — living hell deep dive with **red/green wording diffs** (`scripts/spotlight_diff.py`)
+2. [`reports/build-diffs.md`](../reports/build-diffs.md) — consecutive change counts + high-sim red/green samples  
+3. [`reports/all-keys-change-ledger.md`](../reports/all-keys-change-ledger.md) — hardness ledger with diffs per restore  
+4. [`reports/soften-map.md`](../reports/soften-map.md) — soften candidates with phrase diffs  
+5. [`reports/spotlight-hard-vs-soft-4.7-4.8.md`](../reports/spotlight-hard-vs-soft-4.7-4.8.md) — living hell deep dive  
+6. [`reports/hard-to-soft-examples.json`](../reports/hard-to-soft-examples.json) — machine list of hardness wins vs target  
+
+Regenerate everything:
+
+```bash
+python3 scripts/map_softening.py
+python3 scripts/diff_builds.py
+python3 scripts/build_classic_all.py --target 4.10.0-PTU
+python3 scripts/spotlight_diff.py
+```
 
 ---
 

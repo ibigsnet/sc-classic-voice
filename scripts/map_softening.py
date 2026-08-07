@@ -28,6 +28,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ini_util import load_ini, plain, version_sort_key
+from phrase_diff import format_markdown_diff, hunk_dicts, one_line_summary
 from wordlists import (
     euphemism_pairs as _load_euphemism_pairs,
     hard_patterns as _load_hard_patterns,
@@ -62,6 +63,11 @@ class SoftenEvent:
     new_preview: str
     old_len: int
     new_len: int
+    # Full plain text kept for report diffs (not truncated previews).
+    old_full: str
+    new_full: str
+    diff_hunks: list[dict[str, str]]
+    diff_summary: str
 
 
 def edge_hits(text: str) -> list[str]:
@@ -148,6 +154,10 @@ def compare_pair(
                 new_preview=new_p[:400].replace("\n", " | "),
                 old_len=len(old_p),
                 new_len=len(new_p),
+                old_full=old_p,
+                new_full=new_p,
+                diff_hunks=hunk_dicts(old_p, new_p),
+                diff_summary=one_line_summary(old_p, new_p),
             )
         )
     events.sort(key=lambda e: e.score, reverse=True)
@@ -184,6 +194,14 @@ def main() -> None:
         print(f"  {a_label} → {b_label}: {len(ev)} soften candidates")
 
     args.out.mkdir(parents=True, exist_ok=True)
+    # JSON: keep hunks + previews; drop full bodies to limit repo size.
+    events_json = []
+    for e in all_events:
+        d = asdict(e)
+        d.pop("old_full", None)
+        d.pop("new_full", None)
+        events_json.append(d)
+
     json_path = args.out / "soften-map.json"
     json_path.write_text(
         json.dumps(
@@ -191,7 +209,8 @@ def main() -> None:
                 "versions": [v[0] for v in versions],
                 "pair_stats": pair_stats,
                 "event_count": len(all_events),
-                "events": [asdict(e) for e in all_events],
+                "diff_legend": "diff_hunks: phrase-level -old +new (see phrase_diff.py)",
+                "events": events_json,
             },
             indent=2,
         ),
@@ -211,6 +230,7 @@ def main() -> None:
                 "edge_lost",
                 "edge_gained",
                 "euphemism_hits",
+                "diff_summary",
                 "old_preview",
                 "new_preview",
             ],
@@ -227,6 +247,7 @@ def main() -> None:
                     "edge_lost": "|".join(e.edge_lost),
                     "edge_gained": "|".join(e.edge_gained),
                     "euphemism_hits": "|".join(e.euphemism_hits),
+                    "diff_summary": e.diff_summary,
                     "old_preview": e.old_preview,
                     "new_preview": e.new_preview,
                 }
@@ -239,15 +260,37 @@ def main() -> None:
         "Wording changes across stock `global.ini` extracts that look like **tone softening** "
         "(lost edge, euphemism swaps). Auto-detected; review before shipping a pack.",
         "",
+        "### How to read diffs",
+        "",
+        "Each event shows a **phrase-level wording diff** (not two near-identical full strings):",
+        "",
+        "- 🔴 / `-` = removed (older / harder)",
+        "- 🟢 / `+` = added (newer / softer)",
+        "- GitHub paints fenced `diff` blocks red/green automatically.",
+        "",
+        "Shared helper: `scripts/phrase_diff.py`.",
+        "",
         "## Corpus",
         "",
     ]
     for label, path in versions:
         lines.append(f"- **{label}** — `{path.name}`")
-    lines += ["", "## Pair counts", "", "| From | To | Soften candidates |", "|------|----|------------------:|"]
+    lines += [
+        "",
+        "## Pair counts",
+        "",
+        "| From | To | Soften candidates |",
+        "|------|----|------------------:|",
+    ]
     for ps in pair_stats:
         lines.append(f"| {ps['from']} | {ps['to']} | {ps['events']} |")
-    lines += ["", f"**Total events:** {len(all_events)}", "", "## Top events (by score)", ""]
+    lines += [
+        "",
+        f"**Total events:** {len(all_events)}",
+        "",
+        "## Top events (by score)",
+        "",
+    ]
     for e in all_events[:60]:
         lines.append(
             f"### `{e.key}` — {e.from_version} → {e.to_version} "
@@ -258,8 +301,22 @@ def main() -> None:
         if e.euphemism_hits:
             lines.append(f"- Euphemism: {', '.join(e.euphemism_hits)}")
         lines.append("")
+        lines.append(
+            format_markdown_diff(
+                e.old_full,
+                e.new_full,
+                e.from_version,
+                e.to_version,
+                include_inline=e.similarity >= 0.85,
+            )
+        )
+        lines.append("<details>")
+        lines.append("<summary>Full previews</summary>")
+        lines.append("")
         lines.append(f"- **Old:** {e.old_preview[:350]}")
         lines.append(f"- **New:** {e.new_preview[:350]}")
+        lines.append("")
+        lines.append("</details>")
         lines.append("")
     md.write_text("\n".join(lines), encoding="utf-8")
 
