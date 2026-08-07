@@ -1,13 +1,23 @@
 # Packs
 
-| File | Purpose |
-|------|---------|
-| `classic-voice-user.ini` | Delta overlay for Smart Citizen **Import INI** / manual merge |
-| `classic-voice-user.meta.json` | Provenance: which corpus version each key came from |
+## Player downloads (`library/`)
 
-Regenerate after updating `corpus/` and re-running:
+See **[docs/PACK_LIBRARY.md](../docs/PACK_LIBRARY.md)** for the full model.
+
+| Pack | Purpose |
+|------|---------|
+| `library/01-classic-strict.ini` | Anti-soften only (hard wording where we detected softens) |
+| `library/01-classic-broad.ini` | Older stock narrative wording for many changed keys |
+| `library/composed-classic-strict-plus-community.ini` | Hard wording + BP/XP-style community enhancements |
+| `library/composed-classic-broad-plus-community.ini` | Broad classic + community enhancements |
+| `classic-voice-user.ini` | Same as classic-strict (simple default) |
+
+**Import into [Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen):** Config → Import INI → Apply.
+
+## Rebuild
 
 ```bash
+python3 scripts/diff_builds.py --target 4.10.0-PTU
 python3 scripts/map_softening.py
-python3 scripts/build_pack.py --target 4.10.0-PTU
+python3 scripts/build_library.py --target 4.10.0-PTU
 ```

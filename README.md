@@ -38,6 +38,17 @@ This is a **fan localization overlay** (same class as community language packs).
 Smart Citizen already does extract, merge, BP/XP enhancements, and Apply.  
 **sc-classic-voice** is the *anti-soften / classic voice* layer—a small `user.ini`-style delta you import so their auto enhancements and our restored wording stack cleanly. Use both.
 
+## Download packs
+
+| Want | File |
+|------|------|
+| Hard wording only (surgical) | [`packs/library/01-classic-strict.ini`](packs/library/01-classic-strict.ini) |
+| Hard wording, broader | [`packs/library/01-classic-broad.ini`](packs/library/01-classic-broad.ini) |
+| Hard + BP/XP community style | [`packs/library/composed-classic-strict-plus-community.ini`](packs/library/composed-classic-strict-plus-community.ini) |
+| Maps / receipts | [`reports/`](reports/) |
+
+Full guide: **[docs/PACK_LIBRARY.md](docs/PACK_LIBRARY.md)**.
+
 ## Related projects
 
 | Project | Role | Link |

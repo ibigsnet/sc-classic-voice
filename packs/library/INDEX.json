@@ -1,0 +1,23 @@
+{
+  "target": "4.10.0-PTU",
+  "packs": {
+    "01-classic-strict.ini": {
+      "keys": 4,
+      "role": "old wording (softens only)"
+    },
+    "01-classic-broad.ini": {
+      "keys": 608,
+      "role": "oldest stock narrative wording for all changed narrative keys"
+    },
+    "02-community-mission-enhancements.ini": {
+      "keys": 1570,
+      "role": "BP/XP/mission-details style from community fixtures"
+    },
+    "composed-classic-strict-plus-community.ini": {
+      "role": "classic-strict then community enhancements appended"
+    },
+    "composed-classic-broad-plus-community.ini": {
+      "role": "classic-broad then community enhancements appended"
+    }
+  }
+}

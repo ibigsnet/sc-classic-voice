@@ -14,8 +14,8 @@ Wording changes across stock `global.ini` extracts that look like **tone softeni
 - **4.7.0-PTU** — `4.7.0-PTU.ini`
 - **4.7.1-LIVE** — `4.7.1-LIVE.ini`
 - **4.8.0-PTU** — `4.8.0-PTU.ini`
-- **4.9.0-LIVE** — `stock-global.ini`
-- **4.10.0-PTU** — `stock-global.ini`
+- **4.9.0-LIVE** — `4.9.0-LIVE-p4k-fresh.ini`
+- **4.10.0-PTU** — `4.10.0-PTU-p4k-fresh.ini`
 
 ## Pair counts
 
