@@ -1,23 +1,23 @@
 # Packs
 
-## Player downloads (`library/`)
+**Policy:** compare **all keys** across **all** banked stocks; when wording changes, pick **older/harder** text for **current** builds.
 
-See **[docs/PACK_LIBRARY.md](../docs/PACK_LIBRARY.md)** for the full model.
+Full guide: **[docs/PACK_LIBRARY.md](../docs/PACK_LIBRARY.md)**
 
-| Pack | Purpose |
+## Recommended downloads (`library/`)
+
+| File | Purpose |
 |------|---------|
-| `library/01-classic-strict.ini` | Anti-soften only (hard wording where we detected softens) |
-| `library/01-classic-broad.ini` | Older stock narrative wording for many changed keys |
-| `library/composed-classic-strict-plus-community.ini` | Hard wording + BP/XP-style community enhancements |
-| `library/composed-classic-broad-plus-community.ini` | Broad classic + community enhancements |
-| `classic-voice-user.ini` | Same as classic-strict (simple default) |
+| `01-classic-all-at-least-as-hard.ini` | Older/harder wording for current game (~1500 keys) |
+| `composed-classic-all-at-least-as-hard-plus-community.ini` | Same + BP/XP community enhancements (~3000 keys) |
 
-**Import into [Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen):** Config → Import INI → Apply.
+Also: strict-harder-only, broad-oldest, community layer alone — see INDEX.json.
 
-## Rebuild
+**Smart Citizen:** https://github.com/Osiris-DevWorks/smart-citizen → Import INI → Apply.
 
-```bash
-python3 scripts/diff_builds.py --target 4.10.0-PTU
-python3 scripts/map_softening.py
-python3 scripts/build_library.py --target 4.10.0-PTU
-```
+## Maps
+
+| Report | Purpose |
+|--------|---------|
+| `reports/build-diffs.md` | All build-to-build text changes |
+| `reports/all-keys-change-ledger.md` | Hardness ledger + restores |

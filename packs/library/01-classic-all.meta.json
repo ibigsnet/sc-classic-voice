@@ -1,0 +1,190 @@
+{
+  "target": "4.10.0-PTU",
+  "policy": "max_hardness_then_oldest",
+  "require_harder": true,
+  "key_count": 14,
+  "entries": [
+    {
+      "key": "headhunters_bombingrun_multi_E_CFP_desc_001",
+      "chosen_version": "4.3.2-LIVE",
+      "hardness_chosen": 92.0,
+      "hardness_target": 7.0,
+      "gain": 85.0,
+      "similarity_to_target": 0.9263,
+      "edge_chosen": [
+        "living_hell",
+        "bomb_the_living",
+        "hell",
+        "shit"
+      ],
+      "edge_target": [
+        "shit"
+      ],
+      "chosen_preview": "Every day it seems like Citizens for Prosperity is out here trying to snatch up more people for their shitty little cause and make life more difficult for hardworkin' folks like ourselves.  |  | I figure ",
+      "target_preview": "Every day it seems like Citizens for Prosperity is out here trying to snatch up more people for their shitty little cause and make life more difficult for hardworkin' folks like ourselves.  |  | I figure "
+    },
+    {
+      "key": "Journal_General_FrontendNewspaperHeadlines_Content",
+      "chosen_version": "4.5.0-LIVE",
+      "hardness_chosen": 37.0,
+      "hardness_target": 1.0,
+      "gain": 36.0,
+      "similarity_to_target": 0.0363,
+      "edge_chosen": [
+        "kill",
+        "execute"
+      ],
+      "edge_target": [],
+      "chosen_preview": "Terra Gazette | December 2955 |  | FTL COMMS BREAKTHROUGH | Scientists reveal cutting-edge discovery allowing for real-time inter-system comms. |  | \u201cThe universe has just grown a bit smaller,\u201d said lead research",
+      "target_preview": "VOX POPULI | Release Edition 4.7.0 |  | UEE INTERSYSTEM COMM NETWORK HACKED  | Another rushed initiative by the crumbling empire once again proves an unacceptable lack of forethought and basic governance.   |  | "
+    },
+    {
+      "key": "headhunters_Nyx_bombingrun_M_desc_001",
+      "chosen_version": "4.7.0-LIVE",
+      "hardness_chosen": 29.0,
+      "hardness_target": 1.0,
+      "gain": 28.0,
+      "similarity_to_target": 0.9929,
+      "edge_chosen": [
+        "bomb_the_life"
+      ],
+      "edge_target": [],
+      "chosen_preview": "Seems we got a bit of competition out here in Nyx. Scouts have spotted a gang holding up at  <EM4>~mission(Location|Address)</EM4>. |  | Now, I'm a fair man. I sent these nullbrains a message saying they ",
+      "target_preview": "Seems we got a bit of competition out here in Nyx. Scouts have spotted a gang holding up at  <EM4>~mission(Location|Address)</EM4>. |  | Now, I'm a fair man. I sent these nullbrains a message saying they "
+    },
+    {
+      "key": "headhunters_bombingrun_S_desc_001",
+      "chosen_version": "4.7.0-LIVE",
+      "hardness_chosen": 11.0,
+      "hardness_target": -9.0,
+      "gain": 20.0,
+      "similarity_to_target": 0.9832,
+      "edge_chosen": [
+        "bombing_run"
+      ],
+      "edge_target": [],
+      "chosen_preview": "We've heard news that a new gang are planning a bombing run on a place over at <EM4>~mission(Location|Address)</EM4>. They figure if they can take out the fuel supplies there then it's theirs for the ",
+      "target_preview": "We've heard news that a new gang are planning an attack on a place over at <EM4>~mission(Location|Address)</EM4>. They figure if they can take out the fuel supplies there then it's theirs for the taki"
+    },
+    {
+      "key": "Shubin_Industrial_ShipMining_Nyx_E_Local_Desc_001",
+      "chosen_version": "4.6.0-PTU",
+      "hardness_chosen": 1.0,
+      "hardness_target": -9.0,
+      "gain": 10.0,
+      "similarity_to_target": 0.0932,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "POSTING: Industrial | LOCATION:\u00a0~mission(System) | REQ EXPERIENCE: Ship Mining |  | TERMS*:  |  | Shubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)<",
+      "target_preview": "POSTING: Purchase Order | LOCATION: <EM4>~mission(System) </EM4> |  | TERMS*:  | Due to changes in our sourcing pipeline, Shubin Interstellar is currently looking to purchase a variety of refined materials fr"
+    },
+    {
+      "key": "Shubin_Industrial_ShipMining_Nyx_M_Solar_Desc_001",
+      "chosen_version": "4.6.0-PTU",
+      "hardness_chosen": 1.0,
+      "hardness_target": -9.0,
+      "gain": 10.0,
+      "similarity_to_target": 0.1299,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "POSTING: Industrial | LOCATION:\u00a0~mission(System) | REQ EXPERIENCE: Ship Mining |  | TERMS*:  |  | Shubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)<",
+      "target_preview": "POSTING: Purchase Order | LOCATION: <EM4>~mission(System) </EM4> |  | TERMS*:  | Shubin Interstellar is currently looking to fulfil another purchase order for a variety of refined materials. We appreciate you"
+    },
+    {
+      "key": "Shubin_Industrial_ShipMining_Pyro_E_Local_Desc_001",
+      "chosen_version": "4.6.0-PTU",
+      "hardness_chosen": 1.0,
+      "hardness_target": -9.0,
+      "gain": 10.0,
+      "similarity_to_target": 0.0932,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "POSTING: Industrial | LOCATION:\u00a0~mission(System) | REQ EXPERIENCE: Ship Mining |  | TERMS*:  |  | Shubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)<",
+      "target_preview": "POSTING: Purchase Order | LOCATION: <EM4>~mission(System) </EM4> |  | TERMS*:  | Due to changes in our sourcing pipeline, Shubin Interstellar is currently looking to purchase a variety of refined materials fr"
+    },
+    {
+      "key": "Shubin_Industrial_ShipMining_Pyro_M_Solar_Desc_001",
+      "chosen_version": "4.6.0-PTU",
+      "hardness_chosen": 1.0,
+      "hardness_target": -9.0,
+      "gain": 10.0,
+      "similarity_to_target": 0.1299,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "POSTING: Industrial | LOCATION:\u00a0~mission(System) | REQ EXPERIENCE: Ship Mining |  | TERMS*:  |  | Shubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)<",
+      "target_preview": "POSTING: Purchase Order | LOCATION: <EM4>~mission(System) </EM4> |  | TERMS*:  | Shubin Interstellar is currently looking to fulfil another purchase order for a variety of refined materials. We appreciate you"
+    },
+    {
+      "key": "Shubin_Industrial_ShipMining_Pyro_VE_Local_Desc_001",
+      "chosen_version": "4.6.0-PTU",
+      "hardness_chosen": 1.0,
+      "hardness_target": -9.0,
+      "gain": 10.0,
+      "similarity_to_target": 0.0899,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "POSTING: Industrial | LOCATION:\u00a0~mission(System) | REQ EXPERIENCE: Ship Mining |  | TERMS*:  |  | Shubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)<",
+      "target_preview": "POSTING: Purchase Order | LOCATION: <EM4>~mission(System) </EM4> |  | TERMS*:  | Due to changes in our sourcing pipeline, Shubin Interstellar is currently looking to purchase a variety of refined materials fr"
+    },
+    {
+      "key": "Shubin_Industrial_ShipMining_Stanton_E_Local_Desc_001",
+      "chosen_version": "4.6.0-PTU",
+      "hardness_chosen": 1.0,
+      "hardness_target": -9.0,
+      "gain": 10.0,
+      "similarity_to_target": 0.0932,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "POSTING: Industrial | LOCATION:\u00a0~mission(System) | REQ EXPERIENCE: Ship Mining |  | TERMS*:  |  | Shubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)<",
+      "target_preview": "POSTING: Purchase Order | LOCATION: <EM4>~mission(System) </EM4> |  | TERMS*:  | Due to changes in our sourcing pipeline, Shubin Interstellar is currently looking to purchase a variety of refined materials fr"
+    },
+    {
+      "key": "Shubin_Industrial_ShipMining_Stanton_M_Solar_Desc_001",
+      "chosen_version": "4.6.0-PTU",
+      "hardness_chosen": 1.0,
+      "hardness_target": -9.0,
+      "gain": 10.0,
+      "similarity_to_target": 0.1299,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "POSTING: Industrial | LOCATION:\u00a0~mission(System) | REQ EXPERIENCE: Ship Mining |  | TERMS*:  |  | Shubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)<",
+      "target_preview": "POSTING: Purchase Order | LOCATION: <EM4>~mission(System) </EM4> |  | TERMS*:  | Shubin Interstellar is currently looking to fulfil another purchase order for a variety of refined materials. We appreciate you"
+    },
+    {
+      "key": "Stanton3a_Desc,P",
+      "chosen_version": "4.6.0-LIVE",
+      "hardness_chosen": 1.0,
+      "hardness_target": 0.0,
+      "gain": 1.0,
+      "similarity_to_target": 0.7381,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "This icy moon features active cryogeysers and cryovolcanoes. |  | Potential Ship Mineables: | Beryl | Hephasestanite | Agricium | Laranite | Borase | Gold | Taranite | Bexalite | Quantanium | Quartz | Corundum | Tungsten |  | Potent",
+      "target_preview": "This icy moon features active cryogeysers and cryovolcanoes. |  | Potential Ship Mineables: | Iron | Copper | Laranite | Quantainium |  | Potential Hand Mineables: | Aphorite | Dolivine | Janalite"
+    },
+    {
+      "key": "item_Desc_ops_pants_02_01_01",
+      "chosen_version": "4.3.2-LIVE",
+      "hardness_chosen": 1.0,
+      "hardness_target": 0.0,
+      "gain": 1.0,
+      "similarity_to_target": 0.9112,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "Carrying Capacity: 0.5K \u00b5SCU |  | Cut to a narrow fit, OpalSky's Mivaldi pants feature bold asymmetrical design with smart yet casual dual material styling, making it the perfect addition to any wardrobe.",
+      "target_preview": "Carrying Capacity: 0.5K \u00b5SCU |  | Cut to a narrow fit, OpalSky's Mivaldi pants feature bold asymmetrical design with smart yet casual dual material styling, making it the perfect addition to any wardrobe."
+    },
+    {
+      "key": "vehicle_DescAEGS_Retaliator",
+      "chosen_version": "4.3.2-LIVE",
+      "hardness_chosen": 1.0,
+      "hardness_target": 0.0,
+      "gain": 1.0,
+      "similarity_to_target": 0.9548,
+      "edge_chosen": [],
+      "edge_target": [],
+      "chosen_preview": "Manufacturer: Aegis Dynamics | Focus:\u00a0Heavy Gunship |  | This civilian refit of the Retaliator updates the military ship's chassis with unladen space able to be fitted with various modules to suit your need",
+      "target_preview": "Manufacturer: Aegis Dynamics | Focus:\u00a0Modular |  | This civilian refit of the Retaliator updates the military ship's chassis with unladen space able to be fitted with various modules to suit your needs."
+    }
+  ]
+}

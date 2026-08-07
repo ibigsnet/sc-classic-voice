@@ -42,12 +42,12 @@ Smart Citizen already does extract, merge, BP/XP enhancements, and Apply.
 
 | Want | File |
 |------|------|
-| Hard wording only (surgical) | [`packs/library/01-classic-strict.ini`](packs/library/01-classic-strict.ini) |
-| Hard wording, broader | [`packs/library/01-classic-broad.ini`](packs/library/01-classic-broad.ini) |
-| Hard + BP/XP community style | [`packs/library/composed-classic-strict-plus-community.ini`](packs/library/composed-classic-strict-plus-community.ini) |
-| Maps / receipts | [`reports/`](reports/) |
+| **Older/harder wording** (recommended) | [`packs/library/01-classic-all-at-least-as-hard.ini`](packs/library/01-classic-all-at-least-as-hard.ini) |
+| **Older/harder + BP/XP community** | [`packs/library/composed-classic-all-at-least-as-hard-plus-community.ini`](packs/library/composed-classic-all-at-least-as-hard-plus-community.ini) |
+| Strict “harder than stock only” | [`packs/library/01-classic-all.ini`](packs/library/01-classic-all.ini) |
+| Maps / receipts | [`reports/build-diffs.md`](reports/build-diffs.md), [`reports/all-keys-change-ledger.md`](reports/all-keys-change-ledger.md) |
 
-Full guide: **[docs/PACK_LIBRARY.md](docs/PACK_LIBRARY.md)**.
+Full guide: **[docs/PACK_LIBRARY.md](docs/PACK_LIBRARY.md)**. Works with **[Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen)** (Import INI).
 
 ## Related projects
 
