@@ -28,47 +28,24 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ini_util import load_ini, plain, version_sort_key
+from wordlists import (
+    euphemism_pairs as _load_euphemism_pairs,
+    hard_patterns as _load_hard_patterns,
+)
 
-# Phrases / tokens that indicate rawer tone when present in older text
-EDGE_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
-    ("living_hell", re.compile(r"\bliving hell\b", re.I)),
-    ("bomb_the_life", re.compile(r"\bbomb the life\b", re.I)),
-    ("bomb_the_living", re.compile(r"\bbomb the living\b", re.I)),
-    ("bombing_run", re.compile(r"\bbombing run\b", re.I)),
-    ("kill", re.compile(r"\bkill(?:ing|ed|s)?\b", re.I)),
-    ("murder", re.compile(r"\bmurder\b", re.I)),
-    ("slaughter", re.compile(r"\bslaughter\b", re.I)),
-    ("corpse", re.compile(r"\bcorpses?\b", re.I)),
-    ("blood", re.compile(r"\bblood(?:y)?\b", re.I)),
-    ("hell", re.compile(r"\bhell\b", re.I)),
-    ("shit", re.compile(r"\bshit(?:ty)?\b", re.I)),
-    ("crap", re.compile(r"\bcrap\b", re.I)),
-    ("fuck", re.compile(r"\bfuck(?:ing)?\b", re.I)),
-    ("bastard", re.compile(r"\bbastards?\b", re.I)),
-    ("whore", re.compile(r"\bwhores?\b", re.I)),
-    ("execute", re.compile(r"\bexecut(?:e|ion|ed|ing)\b", re.I)),
-    ("annihilate", re.compile(r"\bannihilat\w*\b", re.I)),
-    ("obliterate", re.compile(r"\bobliterat\w*\b", re.I)),
-    ("wipe_out", re.compile(r"\bwipe(?:s|d)? out\b", re.I)),
-    ("blow_up", re.compile(r"\bblow(?:s|n)? up\b", re.I)),
-    ("gut", re.compile(r"\bgut(?:s|ted|ting)?\b", re.I)),
-    ("massacre", re.compile(r"\bmassacre\b", re.I)),
-    ("terminate", re.compile(r"\bterminat\w*\b", re.I)),
-    ("dead_body", re.compile(r"\bdead bod(?:y|ies)\b", re.I)),
-]
+# Loaded from wordlists/hard-words.txt and wordlists/euphemism-pairs.tsv
+# (editable without changing Python — reverse of studio sanitize lists).
+def _edge_patterns():
+    return _load_hard_patterns()
 
-# Known euphemism replacements (old substring → new-ish softer forms)
-EUPHEMISM_PAIRS: list[tuple[str, str]] = [
-    ("bomb the living hell out of", "really mess the place up"),
-    ("bomb the life out of", "blow the life out of"),
-    ("bombing run", "attack"),
-    ("kill the", "eliminate the"),
-    ("kill ", "take out "),
-    ("murder", "eliminate"),
-    ("slaughter", "defeat"),
-    ("corpses", "bodies"),
-    ("bloody", "brutal"),
-]
+
+def _euphemism_pairs():
+    return _load_euphemism_pairs()
+
+
+# Back-compat names used by other modules
+EDGE_PATTERNS = None  # resolved lazily via edge_hits
+EUPHEMISM_PAIRS = None
 
 
 @dataclass
@@ -89,13 +66,13 @@ class SoftenEvent:
 
 def edge_hits(text: str) -> list[str]:
     t = plain(text)
-    return [name for name, pat in EDGE_PATTERNS if pat.search(t)]
+    return [name for name, pat in _edge_patterns() if pat.search(t)]
 
 
 def euphemism_hits(old: str, new: str) -> list[str]:
     o, n = plain(old).lower(), plain(new).lower()
     hits = []
-    for a, b in EUPHEMISM_PAIRS:
+    for a, b in _euphemism_pairs():
         if a.lower() in o and b.lower() in n and a.lower() not in n:
             hits.append(f"{a!r}→{b!r}")
         # also if old had a and new lost it without exact pair

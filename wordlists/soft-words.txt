@@ -1,0 +1,51 @@
+# Softer / corporate / euphemistic markers that LOWER hardness score.
+# Often what remains after a sanitize pass.
+
+# --- Known CIG-style softenings ---
+mess the place up
+really mess
+take care of
+deal with
+handle the situation
+neutralize
+neutralized
+neutralise
+eliminate
+eliminated
+subdue
+subdued
+apprehend
+apprehended
+detain
+detained
+resolve the situation
+address the situation
+
+# --- Corporate / sanitized mission voice ---
+purchase order
+sourcing pipeline
+fulfil another
+employee incentive
+equal opportunity
+please note
+kindly
+unfortunately
+unfortunate
+we apologize
+at your earliest convenience
+as per
+pursuant
+compliance
+stakeholders
+best practices
+synergy
+
+# --- Mild rewrites of violence ---
+take out
+taken out
+put down
+put them down
+remove the threat
+clear the area
+secure the area
+pacify

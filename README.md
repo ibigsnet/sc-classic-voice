@@ -43,7 +43,8 @@ Smart Citizen already does extract, merge, BP/XP enhancements, and Apply.
 **Clear side-by-side map of real softens** (living hell → mess the place up, etc.) and full coverage status:
 
 → **[docs/EXAMPLES.md](docs/EXAMPLES.md)**  
-→ **[docs/DETECTION.md](docs/DETECTION.md)** — how hard vs soft detection works
+→ **[docs/DETECTION.md](docs/DETECTION.md)** — how hard vs soft detection works  
+→ **[wordlists/](wordlists/)** — hard-words / soft-words / euphemism pairs (editable)
 
 ## Download packs
 

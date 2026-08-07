@@ -34,65 +34,18 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ini_util import load_ini, plain, write_ini
-from map_softening import EDGE_PATTERNS, discover_versions, edge_hits
-
-# Soft / corporate phrasing that lowers hardness when present
-SOFT_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
-    ("mess_the_place", re.compile(r"\bmess the place up\b", re.I)),
-    ("take_care_of", re.compile(r"\btake care of\b", re.I)),
-    ("deal_with", re.compile(r"\bdeal with\b", re.I)),
-    ("neutralize", re.compile(r"\bneutraliz\w*\b", re.I)),
-    ("eliminate", re.compile(r"\beliminat\w*\b", re.I)),  # often softer than kill
-    ("subdue", re.compile(r"\bsubdue\b", re.I)),
-    ("apprehend", re.compile(r"\bapprehend\b", re.I)),
-    ("unfortunate", re.compile(r"\bunfortunate\b", re.I)),
-    ("please_note", re.compile(r"\bplease note\b", re.I)),
-    ("we_kindly", re.compile(r"\bkindly\b", re.I)),
-]
-
-HARD_BOOST_PHRASES = [
-    (r"\bliving hell\b", 25),
-    (r"\bbomb the life\b", 20),
-    (r"\bbomb the living\b", 20),
-    (r"\bbombing run\b", 12),
-    (r"\bkill(?:ing|ed|s)?\b", 10),
-    (r"\bmurder\b", 15),
-    (r"\bslaughter\b", 15),
-    (r"\bhell\b", 6),
-    (r"\bshit(?:ty)?\b", 8),
-    (r"\bcrap\b", 6),
-    (r"\bfuck(?:ing)?\b", 12),
-    (r"\bbastards?\b", 10),
-    (r"\bcorpses?\b", 10),
-    (r"\bblood(?:y)?\b", 6),
-    (r"\bexecut(?:e|ion|ed)\b", 10),
-    (r"\bwipe(?:s|d)? out\b", 8),
-    (r"\bblow(?:s|n)? up\b", 8),
-    (r"\bgut(?:s|ted)?\b", 10),
-]
+from map_softening import discover_versions, edge_hits
+from wordlists import hardness_from_lists
 
 
 def hardness_score(text: str) -> float:
     """Higher = harder / more OG-unsoftened voice.
 
-    Keyword lists are *boosts*, not the only signal. Primary selection uses
-    full text history + similarity (see pick_best_historical).
+    Loads hard/soft terms from wordlists/*.txt (editable). Keyword lists are
+    *boosts*, not the only signal — primary selection uses full text history
+    + similarity (see pick_best_historical).
     """
-    t = plain(text)
-    score = 0.0
-    for name, pat in EDGE_PATTERNS:
-        if pat.search(t):
-            score += 8.0
-    for pat_s, boost in HARD_BOOST_PHRASES:
-        if re.search(pat_s, t, re.I):
-            score += boost
-    for name, pat in SOFT_PATTERNS:
-        if pat.search(t):
-            score -= 10.0
-    # slight preference for denser, longer combat/mission copy (not fluff)
-    if len(t) > 200:
-        score += 1.0
-    return score
+    return hardness_from_lists(plain(text))
 
 
 def word_set(text: str) -> set[str]:

@@ -41,11 +41,14 @@ Also, for the **target** (current soft stock, e.g. 4.10.0-PTU): for each key, co
 
 ---
 
-## Step 2: Detect “edge” / hard words
+## Step 2: Detect “edge” / hard words (editable lists)
 
-List: `EDGE_PATTERNS` in `scripts/map_softening.py`.
+**Source of truth:** [`wordlists/hard-words.txt`](../wordlists/hard-words.txt)  
+Loaded by [`scripts/wordlists.py`](../scripts/wordlists.py).
 
-If a regex matches, the string is tagged with that edge name:
+Studios often sanitize with **moderation lexicons** (see [`wordlists/SOURCES.md`](../wordlists/SOURCES.md)). We keep a **reverse lexicon**: hard words **boost** score so we prefer keeping them.
+
+If a phrase matches, the string is tagged with that edge name. Examples:
 
 | Tag | Matches (roughly) |
 |-----|-------------------|
@@ -196,8 +199,10 @@ See [PACK_LIBRARY.md](PACK_LIBRARY.md).
 
 | Piece | File |
 |-------|------|
-| Edge patterns + euphemism pairs + soften event score | [`scripts/map_softening.py`](../scripts/map_softening.py) |
-| Hardness score + soft penalties + pack pick | [`scripts/build_classic_all.py`](../scripts/build_classic_all.py) |
+| **Editable hard/soft wordlists** | [`wordlists/`](../wordlists/) |
+| Wordlist loader | [`scripts/wordlists.py`](../scripts/wordlists.py) |
+| Soften event score + edge hits | [`scripts/map_softening.py`](../scripts/map_softening.py) |
+| Hardness + smart pack pick | [`scripts/build_classic_all.py`](../scripts/build_classic_all.py) |
 | Full key diffs across builds | [`scripts/diff_builds.py`](../scripts/diff_builds.py) |
 | Layer merge (classic + community BP/XP) | [`scripts/merge_layers.py`](../scripts/merge_layers.py) |
 

@@ -1,0 +1,124 @@
+# Hard / unsoftened voice markers for Star Citizen narrative.
+# One word or phrase per line. Used to BOOST hardness score.
+# Curated for merc/outlaw/combat tone — not a full internet hate list.
+
+# --- Flagship softens we've already seen ---
+living hell
+bomb the life
+bomb the living
+bombing run
+bomb the
+blow the life
+
+# --- Strong language ---
+shit
+shitty
+fuck
+fucking
+fucked
+crap
+bastard
+bastards
+bitch
+asshole
+damn
+goddamn
+hell
+piss
+pissed
+dick
+cock
+
+# --- Direct violence / kill language ---
+kill
+killing
+killed
+kills
+murder
+murdered
+slaughter
+slaughtered
+execute
+executed
+execution
+massacre
+annihilate
+annihilated
+obliterate
+obliterated
+terminate
+terminated
+butcher
+butchered
+gut
+guts
+gutted
+gutting
+dismember
+behead
+decapitate
+
+# --- Bodies / gore ---
+corpse
+corpses
+carcass
+blood
+bloody
+gore
+gory
+entrails
+viscera
+
+# --- Destruction ---
+wipe out
+wiped out
+blow up
+blown up
+blow the
+destroy
+destroyed
+destruction
+detonate
+detonated
+raze
+torch
+burn them
+burn it
+
+# --- Threat / criminal voice ---
+nullbrain
+nullbrains
+scum
+trash
+vermin
+pest
+pests
+outlaw
+outlaws
+pirate
+pirates
+raid
+raiding
+ambush
+hunt them
+make them pay
+make them wish
+send a message
+property damage
+hardworkin
+
+# --- Combat intensity ---
+warzone
+slaughterhouse
+bloodbath
+carnage
+mayhem
+havoc
+wreaking havoc
+deadly
+lethal
+ruthless
+vicious
+brutal
+feral
+savage
