@@ -36,7 +36,7 @@ Full receipts:
 | [`reports/build-diffs.md`](../reports/build-diffs.md) | **All** text changes between consecutive builds (~1.7k steps) |
 | [`reports/all-keys-change-ledger.md`](../reports/all-keys-change-ledger.md) | Soften steps + hardness-based restores |
 | [`reports/all-keys-step-changes.json`](../reports/all-keys-step-changes.json) | Machine full step list |
-| [`reports/spotlight-hard-vs-soft-4.7-4.8.md`](../reports/spotlight-hard-vs-soft-4.7-4.8.md) | Famous living-hell example |
+| [`reports/spotlight-hard-vs-soft-4.7-4.8.md`](../reports/spotlight-hard-vs-soft-4.7-4.8.md) | Famous living-hell example with red/green wording diffs |
 
 Rebuild:
 

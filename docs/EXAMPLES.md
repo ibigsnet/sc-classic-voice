@@ -61,7 +61,15 @@ We do **not** yet have stock extracts for e.g. **3.x**, **4.0–4.2**, or final 
 | 4.9.0-LIVE (fresh p4k) | mess the place up |
 | 4.10.0-PTU (fresh p4k) | mess the place up |
 
-### Side by side
+### Side by side (VCS-style)
+
+Wide three-row tables hide the edit. Prefer a **unified diff** (GitHub paints `-` red, `+` green):
+
+```diff
+# 4.7.1-LIVE  →  4.8.0-PTU / 4.10.0-PTU
+- bomb the living hell out of the area.
++ really mess the place up.
+```
 
 | **HARD (4.7.1 stock)** | **SOFT (4.10.0 p4k stock)** |
 |------------------------|-----------------------------|
@@ -69,6 +77,10 @@ We do **not** yet have stock extracts for e.g. **3.x**, **4.0–4.2**, or final 
 
 Same mission, same key — CIG changed one sentence.  
 **Our pack restores the hard line on current builds.**
+
+Full multi-key spotlight with change tables + inline `~~removed~~` / `**added**` markup:  
+[`reports/spotlight-hard-vs-soft-4.7-4.8.md`](../reports/spotlight-hard-vs-soft-4.7-4.8.md)  
+(regenerate: `python3 scripts/spotlight_diff.py`)
 
 ---
 
@@ -130,7 +142,7 @@ The **anti-soft pack** only **overrides** keys where older text wins on **hardne
 2. [`reports/build-diffs.md`](../reports/build-diffs.md) — full consecutive change counts + samples  
 3. [`reports/all-keys-change-ledger.md`](../reports/all-keys-change-ledger.md) — hardness ledger  
 4. [`reports/hard-to-soft-examples.json`](../reports/hard-to-soft-examples.json) — machine list of hardness wins vs target  
-5. [`reports/spotlight-hard-vs-soft-4.7-4.8.md`](../reports/spotlight-hard-vs-soft-4.7-4.8.md) — living hell deep dive  
+5. [`reports/spotlight-hard-vs-soft-4.7-4.8.md`](../reports/spotlight-hard-vs-soft-4.7-4.8.md) — living hell deep dive with **red/green wording diffs** (`scripts/spotlight_diff.py`)
 
 ---
 
