@@ -24,9 +24,12 @@ Star Citizen is not Halo. Different studio, different tech debt, different mess.
 - Franchises die when they forget who they were for. We’re not waiting politely for SC to finish that journey.
 
 ### What this repo does
-1. **Maps** softens across versioned stock `global.ini` extracts (4.3 → 4.10 and expanding)  
-2. **Builds** a delta pack that re-applies older wording on keys that still exist  
-3. **Integrates** with Smart Citizen via **Import INI** → user overrides (enhancements + classic voice together)  
+1. **Banks** stock English localization from as many old patches as we can get (Data.p4k extracts / community archives — see [docs/CORPUS_SOURCES.md](docs/CORPUS_SOURCES.md))  
+2. **Maps** softens across that history so the changes are **visible with receipts** (not vibes alone)  
+3. **Builds** a delta pack that re-applies older, sharper wording on keys that still exist  
+4. **Integrates** with Smart Citizen via **Import INI** → user overrides (enhancements + classic voice together)  
+
+**Two jobs, one project:** give players the **old-style Star Citizen voice** they backed — and **bring the softens to light** so the community can see what was rewritten.
 
 This is a **fan localization overlay** (same class as community language packs). Not affiliated with CIG / RSI. Opinions in this README are the project’s; the tooling is MIT.
 
@@ -98,14 +101,25 @@ sc-classic-voice/
 └── reports/          # soften map outputs
 ```
 
-## Expanding the corpus
+## Going as far back as we can
 
-Whenever a new LIVE/PTU drops:
+We want **every** stock `global.ini` we can bank — 3.x if someone still has a p4k, every 4.x LIVE/PTU/HOTFIX. Full datapacks are **not** published here (size + rights); we extract **only** localization and keep stocks local. Public repo ships the **map, pack, and tooling**.
 
-1. Extract stock `global.ini`  
-2. Save as `corpus/{version}-{CHANNEL}.ini`  
-3. Re-run map + build  
-4. Review `soften-map.md` for new euphemisms; extend patterns in `map_softening.py` if needed  
+| Currently banked (author) | Notes |
+|---------------------------|--------|
+| 4.3.2 → 4.7.x | ScCompLangPackRemix archives + git tags |
+| **4.8.0-PTU** | Recovered from community pack git tag |
+| 4.9 LIVE / 4.10 PTU | Fresh extract from install |
+| **Wishlist** | 3.17–3.24, 4.0–4.2, 4.8 LIVE finals |
+
+How to add more / where archives come from: **[docs/CORPUS_SOURCES.md](docs/CORPUS_SOURCES.md)**.
+
+```bash
+# after dropping a new stock file into corpus/
+python3 scripts/build_manifest.py
+python3 scripts/map_softening.py
+python3 scripts/build_pack.py --target 4.10.0-PTU
+```
 
 ## Legal
 

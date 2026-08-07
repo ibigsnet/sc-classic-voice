@@ -1,5 +1,9 @@
 # Corpus (local only)
 
+**Purpose:** bank as much historical **stock** English localization as possible so we can restore old-style SC wording and prove softens over time.
+
+See **[docs/CORPUS_SOURCES.md](../docs/CORPUS_SOURCES.md)** for where to find old datapacks / extracts (RSI history, community archives, your backups).
+
 Place or symlink versioned **stock** `global.ini` extracts here:
 
 ```text

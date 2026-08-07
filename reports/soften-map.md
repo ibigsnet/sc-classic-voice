@@ -10,6 +10,10 @@ Wording changes across stock `global.ini` extracts that look like **tone softeni
 - **4.6.0-LIVE** — `stock-global.ini`
 - **4.6.0-PTU** — `stock-global.ini`
 - **4.7.0-LIVE** — `stock-global.ini`
+- **4.7.0-LIVE-HOTFIX** — `4.7.0-LIVE-HOTFIX.ini`
+- **4.7.0-PTU** — `4.7.0-PTU.ini`
+- **4.7.1-LIVE** — `4.7.1-LIVE.ini`
+- **4.8.0-PTU** — `4.8.0-PTU.ini`
 - **4.9.0-LIVE** — `stock-global.ini`
 - **4.10.0-PTU** — `stock-global.ini`
 
@@ -22,10 +26,14 @@ Wording changes across stock `global.ini` extracts that look like **tone softeni
 | 4.5.0-LIVE | 4.6.0-LIVE | 8 |
 | 4.6.0-LIVE | 4.6.0-PTU | 110 |
 | 4.6.0-PTU | 4.7.0-LIVE | 120 |
-| 4.7.0-LIVE | 4.9.0-LIVE | 16 |
+| 4.7.0-LIVE | 4.7.0-LIVE-HOTFIX | 0 |
+| 4.7.0-LIVE-HOTFIX | 4.7.0-PTU | 0 |
+| 4.7.0-PTU | 4.7.1-LIVE | 1 |
+| 4.7.1-LIVE | 4.8.0-PTU | 5 |
+| 4.8.0-PTU | 4.9.0-LIVE | 14 |
 | 4.9.0-LIVE | 4.10.0-PTU | 12 |
 
-**Total events:** 290
+**Total events:** 294
 
 ## Top events (by score)
 

@@ -156,3 +156,5 @@ This document is the plan to grow that into a maintained, patch-following produc
 | 2026-08-07 | Project born; v0.1 auto pack + map; Smart Citizen import path |
 | | Prefer **evidence from stock history**, not fan rewrites |
 | | Personal renames (Ironchad) stay out of public classic-voice pack unless curated later |
+| 2026-08-07 | Expanded corpus: 4.7.x tags + **4.8.0-PTU** stock from ScCompLangPackRemix git history; corpus bank + manifest; CORPUS_SOURCES doc |
+

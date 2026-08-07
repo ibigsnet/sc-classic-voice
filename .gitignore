@@ -1,7 +1,9 @@
 # Full stock extracts are CIG data — keep local only (symlinks or copies)
 corpus/*.ini
 corpus/*.ini.bak
+corpus/bank/
 !corpus/README.md
+!corpus/manifest.json
 
 # Python
 __pycache__/

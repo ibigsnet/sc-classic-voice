@@ -1,0 +1,126 @@
+{
+  "description": "Local stock global.ini corpus for sc-classic-voice. Full files are not committed to git.",
+  "count": 12,
+  "versions": [
+    {
+      "label": "4.3.2-LIVE",
+      "game_version": "4.3.2",
+      "channel": "LIVE",
+      "path": "4.3.2-LIVE.ini",
+      "bytes": 9040104,
+      "key_count": 83259,
+      "sha256": "8b1ced5775af9466edda663aac2ab58774be7140f86eb3624e7d9ff9203c5087",
+      "quality": "stock"
+    },
+    {
+      "label": "4.4.0-PTU",
+      "game_version": "4.4.0",
+      "channel": "PTU",
+      "path": "4.4.0-PTU.ini",
+      "bytes": 9418823,
+      "key_count": 84715,
+      "sha256": "201abe60c2be3fb9defbb3056c91debbadb846b7fc0141530224c2e93dc544a1",
+      "quality": "stock"
+    },
+    {
+      "label": "4.5.0-LIVE",
+      "game_version": "4.5.0",
+      "channel": "LIVE",
+      "path": "4.5.0-LIVE.ini",
+      "bytes": 9469149,
+      "key_count": 85267,
+      "sha256": "19ea545b6955f2de875e110d70097e45734f28c341f4ff830ec034a1fac4a37a",
+      "quality": "stock"
+    },
+    {
+      "label": "4.6.0-LIVE",
+      "game_version": "4.6.0",
+      "channel": "LIVE",
+      "path": "4.6.0-LIVE.ini",
+      "bytes": 9702082,
+      "key_count": 86073,
+      "sha256": "b0194cfa47941a4a8550f43517d57fbd93883f0f2ee659d9c5b925a86af81d57",
+      "quality": "stock"
+    },
+    {
+      "label": "4.6.0-PTU",
+      "game_version": "4.6.0",
+      "channel": "PTU",
+      "path": "4.6.0-PTU.ini",
+      "bytes": 9696570,
+      "key_count": 85949,
+      "sha256": "8a45704b06a405b0ab284ea756930c2c2d71af0ea2adb38909dc6df5336111e4",
+      "quality": "stock"
+    },
+    {
+      "label": "4.7.0-LIVE",
+      "game_version": "4.7.0",
+      "channel": "LIVE",
+      "path": "4.7.0-LIVE.ini",
+      "bytes": 9923405,
+      "key_count": 87591,
+      "sha256": "3e886955a93c94830af0f0ae521c115c430e6dbea7d40c84a30fc90f9dd22756",
+      "quality": "stock"
+    },
+    {
+      "label": "4.7.0-LIVE-HOTFIX",
+      "game_version": "4.7.0",
+      "channel": "LIVE-HOTFIX",
+      "path": "4.7.0-LIVE-HOTFIX.ini",
+      "bytes": 9923405,
+      "key_count": 87591,
+      "sha256": "3e886955a93c94830af0f0ae521c115c430e6dbea7d40c84a30fc90f9dd22756",
+      "quality": "stock"
+    },
+    {
+      "label": "4.7.0-PTU",
+      "game_version": "4.7.0",
+      "channel": "PTU",
+      "path": "4.7.0-PTU.ini",
+      "bytes": 9919908,
+      "key_count": 87567,
+      "sha256": "737b8913b447d3e6505b111201384c134d8d888959c8bb4e82d4f39eb59f61c2",
+      "quality": "stock"
+    },
+    {
+      "label": "4.7.1-LIVE",
+      "game_version": "4.7.1",
+      "channel": "LIVE",
+      "path": "4.7.1-LIVE.ini",
+      "bytes": 9928868,
+      "key_count": 87626,
+      "sha256": "baf696bf19cfc234f94d0d2a51caa04f327abf8bfcf42b01cdc1f7513bc59532",
+      "quality": "stock"
+    },
+    {
+      "label": "4.8.0-PTU",
+      "game_version": "4.8.0",
+      "channel": "PTU",
+      "path": "4.8.0-PTU.ini",
+      "bytes": 10153334,
+      "key_count": 88987,
+      "sha256": "eea8fb1f7a7260ad7a921370596c5e75bb2439873a7d58b5197e35689f0546b8",
+      "quality": "stock"
+    },
+    {
+      "label": "4.9.0-LIVE",
+      "game_version": "4.9.0",
+      "channel": "LIVE",
+      "path": "4.9.0-LIVE.ini",
+      "bytes": 10439724,
+      "key_count": 90121,
+      "sha256": "e5574df1178a980c4b8cfa1fb812d813b527cbc65bc613631eb0abbfecbdd1a5",
+      "quality": "stock"
+    },
+    {
+      "label": "4.10.0-PTU",
+      "game_version": "4.10.0",
+      "channel": "PTU",
+      "path": "4.10.0-PTU.ini",
+      "bytes": 10472695,
+      "key_count": 90334,
+      "sha256": "f4d69ee7d1396f3121bc4e189adc4642bfe14d789b31257227f09979bffc2c94",
+      "quality": "stock"
+    }
+  ]
+}

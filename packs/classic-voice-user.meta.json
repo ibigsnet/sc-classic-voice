@@ -14,7 +14,7 @@
     },
     {
       "key": "headhunters_bombingrun_multi_E_CFP_desc_001",
-      "source_version": "4.7.0-LIVE",
+      "source_version": "4.7.1-LIVE",
       "score": 53.15,
       "edge_lost": [
         "living_hell",
@@ -27,7 +27,7 @@
     },
     {
       "key": "headhunters_Nyx_bombingrun_M_desc_001",
-      "source_version": "4.7.0-LIVE",
+      "source_version": "4.7.1-LIVE",
       "score": 27.0,
       "edge_lost": [
         "bomb_the_life"
@@ -38,7 +38,7 @@
     },
     {
       "key": "headhunters_bombingrun_S_desc_001",
-      "source_version": "4.7.0-LIVE",
+      "source_version": "4.7.1-LIVE",
       "score": 27.0,
       "edge_lost": [
         "bombing_run"

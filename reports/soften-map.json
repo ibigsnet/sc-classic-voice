@@ -6,6 +6,10 @@
     "4.6.0-LIVE",
     "4.6.0-PTU",
     "4.7.0-LIVE",
+    "4.7.0-LIVE-HOTFIX",
+    "4.7.0-PTU",
+    "4.7.1-LIVE",
+    "4.8.0-PTU",
     "4.9.0-LIVE",
     "4.10.0-PTU"
   ],
@@ -37,8 +41,28 @@
     },
     {
       "from": "4.7.0-LIVE",
+      "to": "4.7.0-LIVE-HOTFIX",
+      "events": 0
+    },
+    {
+      "from": "4.7.0-LIVE-HOTFIX",
+      "to": "4.7.0-PTU",
+      "events": 0
+    },
+    {
+      "from": "4.7.0-PTU",
+      "to": "4.7.1-LIVE",
+      "events": 1
+    },
+    {
+      "from": "4.7.1-LIVE",
+      "to": "4.8.0-PTU",
+      "events": 5
+    },
+    {
+      "from": "4.8.0-PTU",
       "to": "4.9.0-LIVE",
-      "events": 16
+      "events": 14
     },
     {
       "from": "4.9.0-LIVE",
@@ -46,7 +70,7 @@
       "events": 12
     }
   ],
-  "event_count": 290,
+  "event_count": 294,
   "events": [
     {
       "key": "Journal_General_FrontendNewspaperHeadlines_Content",
@@ -3729,9 +3753,23 @@
       "new_len": 9
     },
     {
+      "key": "Journal_General_Mining_Compendium_Content",
+      "from_version": "4.7.0-PTU",
+      "to_version": "4.7.1-LIVE",
+      "similarity": 0.268,
+      "edge_lost": [],
+      "edge_gained": [],
+      "euphemism_hits": [],
+      "score": 28.48,
+      "old_preview": "To promote the entrepreneurial spirit of the modern miner, the United Resource Workers have put together a handy guide listing the most common locations to find minerals, ores, and gemstones across the \u2018verse. |  | Agricium - Found in All Deposits |  | Aluminium - Aaron Halo, Cellin, Yela, Stanton Lagrange Points, Pyro Asteroid Clusters |  | Aphorite - All Moons/Planets/Caves |  | Aslarite - Aaron Halo, Magda, It",
+      "new_preview": "To promote the entrepreneurial spirit of the modern miner, the United Resource Workers have put together a handy guide listing the most common locations to find minerals, ores, and gemstones across the \u2018verse. |  | Agricium - ARC-L3, Cellin, CRU-L5, Daymar, MIC-L4, Pyro Asteroid Clusters, Terminus, Vuur, Yela |  | Aluminium - Aaron Halo, Aberdeen, ARC-L1, ARC-L2, Arial, CRU-L3, Glaciem Ring, HUR-L1, HUR-L",
+      "old_len": 1949,
+      "new_len": 3268
+    },
+    {
       "key": "headhunters_bombingrun_multi_E_CFP_desc_001",
-      "from_version": "4.7.0-LIVE",
-      "to_version": "4.9.0-LIVE",
+      "from_version": "4.7.1-LIVE",
+      "to_version": "4.8.0-PTU",
       "similarity": 0.9263,
       "edge_lost": [
         "living_hell",
@@ -3750,8 +3788,8 @@
     },
     {
       "key": "headhunters_Nyx_bombingrun_M_desc_001",
-      "from_version": "4.7.0-LIVE",
-      "to_version": "4.9.0-LIVE",
+      "from_version": "4.7.1-LIVE",
+      "to_version": "4.8.0-PTU",
       "similarity": 0.9929,
       "edge_lost": [
         "bomb_the_life"
@@ -3768,8 +3806,8 @@
     },
     {
       "key": "headhunters_bombingrun_S_desc_001",
-      "from_version": "4.7.0-LIVE",
-      "to_version": "4.9.0-LIVE",
+      "from_version": "4.7.1-LIVE",
+      "to_version": "4.8.0-PTU",
       "similarity": 0.9832,
       "edge_lost": [
         "bombing_run"
@@ -3785,8 +3823,36 @@
       "new_len": 593
     },
     {
+      "key": "Journal_General_Harvestables_Content",
+      "from_version": "4.7.1-LIVE",
+      "to_version": "4.8.0-PTU",
+      "similarity": 0.4607,
+      "edge_lost": [],
+      "edge_gained": [],
+      "euphemism_hits": [],
+      "score": 20.77,
+      "old_preview": "This guide will help you identify what's useful, what's edible, and what's deadly.   |  | *STANTON SYSTEM* | It may seem completely corporate, but the Stanton system is rich with resources for the enterprising forager. |  | DEGNOUS ROOT  | A type of macroalgae that has acclimated to much of the Stanton system, the degnous root is originally from Terra III, where it grows in abundance along shallow coastlines.",
+      "new_preview": "This guide will help you identify what's useful, what's edible, and what's deadly. |  | *STANTON SYSTEM* | It may seem completely corporate, but the Stanton system is rich with resources for the enterprising forager. |  | DEGNOUS ROOT | A type of macroalgae that has acclimated to much of the Stanton system, the degnous root is originally from Terra III, where it grows in abundance along shallow coastlines. It",
+      "old_len": 7589,
+      "new_len": 9100
+    },
+    {
+      "key": "item_fuelnozzle_GRIN_Safe_Desc",
+      "from_version": "4.7.1-LIVE",
+      "to_version": "4.8.0-PTU",
+      "similarity": 0.5265,
+      "edge_lost": [],
+      "edge_gained": [],
+      "euphemism_hits": [],
+      "score": 18.14,
+      "old_preview": "Manufacturer: Greycat Industrial | Item Type: Fuel Nozzle | Safe Flow Rate: 0.8 SCU/s |  | By maintaining a higher working pressure, the Harkin fuel nozzle from Greycat not only provides for a wider range of safe flow rates, but allows the attached storage to hold additional fuel albeit at a slower overall transfer rate. | ",
+      "new_preview": "Manufacturer: Greycat Industrial | Item Type: Fuel Nozzle | Flow Speed: 1.05 SCU/s |  | By maintaining a higher working pressure, the Harkin fuel nozzle from Greycat not only boasts a secure build, but allows the attached storage to hold additional fuel albeit at a slower overall transfer speed. | ",
+      "old_len": 315,
+      "new_len": 289
+    },
+    {
       "key": "item_DescStinger_Paint_Silver_Grey_Teal",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.3376,
       "edge_lost": [],
@@ -3800,7 +3866,7 @@
     },
     {
       "key": "item_Desc_dmc_frontier_gloves_01_02_11,P",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.4151,
       "edge_lost": [],
@@ -3814,7 +3880,7 @@
     },
     {
       "key": "item_Desc_dmc_frontier_jacket_01_02_11,P",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.4151,
       "edge_lost": [],
@@ -3828,7 +3894,7 @@
     },
     {
       "key": "item_Desc_dmc_frontier_pants_01_02_11,P",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.4231,
       "edge_lost": [],
@@ -3842,7 +3908,7 @@
     },
     {
       "key": "item_Desc_gsb_frontier_boots_01_02_11,P",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.4231,
       "edge_lost": [],
@@ -3855,22 +3921,8 @@
       "new_len": 41
     },
     {
-      "key": "Journal_General_Harvestables_Content",
-      "from_version": "4.7.0-LIVE",
-      "to_version": "4.9.0-LIVE",
-      "similarity": 0.4607,
-      "edge_lost": [],
-      "edge_gained": [],
-      "euphemism_hits": [],
-      "score": 20.77,
-      "old_preview": "This guide will help you identify what's useful, what's edible, and what's deadly.   |  | *STANTON SYSTEM* | It may seem completely corporate, but the Stanton system is rich with resources for the enterprising forager. |  | DEGNOUS ROOT  | A type of macroalgae that has acclimated to much of the Stanton system, the degnous root is originally from Terra III, where it grows in abundance along shallow coastlines.",
-      "new_preview": "This guide will help you identify what's useful, what's edible, and what's deadly. |  | *STANTON SYSTEM* | It may seem completely corporate, but the Stanton system is rich with resources for the enterprising forager. |  | DEGNOUS ROOT | A type of macroalgae that has acclimated to much of the Stanton system, the degnous root is originally from Terra III, where it grows in abundance along shallow coastlines. It",
-      "old_len": 7589,
-      "new_len": 9100
-    },
-    {
       "key": "item_Desc_cbd_hat_03_01_CFP_var2,P",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.4681,
       "edge_lost": [],
@@ -3884,7 +3936,7 @@
     },
     {
       "key": "mission_location_nyx_006",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.56,
       "edge_lost": [],
@@ -3897,8 +3949,22 @@
       "new_len": 7
     },
     {
+      "key": "UWC_Refueling_multiple_med_desc_001,P",
+      "from_version": "4.8.0-PTU",
+      "to_version": "4.9.0-LIVE",
+      "similarity": 0.668,
+      "edge_lost": [],
+      "edge_gained": [],
+      "euphemism_hits": [],
+      "score": 12.48,
+      "old_preview": "Hey again, |  | I've got a beacon at <EM4>~mission(Location|Address)</EM4> and this one's a big one. An entire little fleet of ships all burned out of fuel at the same time. Impressive coordination and lack of planning at the same time.  |  | The client vessel will pay you at the rate of <EM4>~mission(FuelRate) aUEC per SCU of Hydrogen</EM4> and  <EM4>~mission(QTFuelRate) aUEC per SCU of Quantum </EM4>, a",
+      "new_preview": "Hey again, |  | I've got a beacon at <EM4>~mission(Location|Address)</EM4> and this one's a bit more complicated than usual. Got small convoy of ships requesting ~mission(FuelType). Impressive coordination and lack of planning to all need refueling at the same time.  |  | The client will pay you at the rate of ~mission(RefuelRequest), and as a United Wayfarers Club contractor, you will also qualify for th",
+      "old_len": 800,
+      "new_len": 730
+    },
+    {
       "key": "mission_location_nyx_007",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.6818,
       "edge_lost": [],
@@ -3912,7 +3978,7 @@
     },
     {
       "key": "mission_location_nyx_008",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.6857,
       "edge_lost": [],
@@ -3926,7 +3992,7 @@
     },
     {
       "key": "RAIN_intro_desc_01",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.7153,
       "edge_lost": [],
@@ -3939,22 +4005,22 @@
       "new_len": 694
     },
     {
-      "key": "item_Desc_vpw_bouncer_jacket_01_01_01",
-      "from_version": "4.7.0-LIVE",
+      "key": "UWC_Refueling_multiple_med_title_001",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
-      "similarity": 0.7629,
+      "similarity": 0.7179,
       "edge_lost": [],
       "edge_gained": [],
       "euphemism_hits": [],
-      "score": 8.69,
-      "old_preview": "Carrying Capacity: 1K \u00b5SCU |  | The Vaporwear Creese is an ocan jacket featuring an old-Earth collar and tags around the shoulders. Armored shoulder accents and ventilated sleeves allow the jacket to be worn casually or piloting an open canopy vehicle.",
-      "new_preview": "Carrying Capacity: 1K \u00b5SCU |  | The Vaporwear Creese jacket features an old-Earth collar and tags around the shoulders. Armored shoulder accents and ventilated sleeves provide protection without restricting movement, allowing the jacket to be worn casually or piloting an open canopy vehicle. The special Nine Tails edition features the symbology of the gang.",
-      "old_len": 248,
-      "new_len": 355
+      "score": 10.48,
+      "old_preview": "URGENT FLEET REFUEL",
+      "new_preview": "URGENT CONVOY REFUEL",
+      "old_len": 19,
+      "new_len": 20
     },
     {
       "key": "mission_location_nyx_008a",
-      "from_version": "4.7.0-LIVE",
+      "from_version": "4.8.0-PTU",
       "to_version": "4.9.0-LIVE",
       "similarity": 0.7742,
       "edge_lost": [],
@@ -3965,6 +4031,20 @@
       "new_preview": "a location in the Glaciem Ring",
       "old_len": 32,
       "new_len": 30
+    },
+    {
+      "key": "UWC_Refueling_easy_desc_001",
+      "from_version": "4.8.0-PTU",
+      "to_version": "4.9.0-LIVE",
+      "similarity": 0.778,
+      "edge_lost": [],
+      "edge_gained": [],
+      "euphemism_hits": [],
+      "score": 8.08,
+      "old_preview": "Hey there, |  | If you're fitted for refueling, you might like this one.  |  | A beacon has just gone live at <EM4>~mission(Location|Address)</EM4>, from a client whose <EM4>~mission(Ship)</EM4> is running on empty, so make sure your fuel pods are topped off. |  | The client vessel will pay you at the rate of <EM4>~mission(FuelRate) aUEC per SCU of Hydrogen</EM4> and  <EM4>~mission(QTFuelRate) aUEC per SCU of",
+      "new_preview": "Hey there, |  | If you're fitted for refueling, you might like this one.  |  | A beacon has just gone live at <EM4>~mission(Location|Address)</EM4>, from a client whose <EM4>~mission(Ship)</EM4> is in need of ~mission(FuelType), so make sure your pods are topped off. |  | The client vessel will pay you at the rate of ~mission(RefuelRequest), and as a United Wayfarers Club contractor, you will also qualify for",
+      "old_len": 797,
+      "new_len": 712
     },
     {
       "key": "item_Desc_rrs_combat_heavy_backpack_01_04_01",
