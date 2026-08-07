@@ -2,6 +2,12 @@
 
 **Put the teeth back in Star Citizen’s text.**
 
+### → [Hard vs soft comparisons (receipts)](docs/COMPARISONS.md)
+
+See exactly what CIG rewrote — red/green wording diffs, flagship Headhunter softens, full build maps, review queue.
+
+---
+
 Star Citizen used to sound like a hard sci-fi outlaw sandbox: rough contract briefings, blunt violence, Headhunters who talk like criminals. Over recent patches, Cloud Imperium has been sanding that down—mission copy gets softer, more corporate, more “please don’t offend anyone.” Edge becomes euphemism. “Bomb the living hell out of the area” becomes “really mess the place up.” That’s not polish. That’s the studio leaning **woke-adjacent / soy-safe** with the fiction, and it drags the whole game’s personality with it.
 
 **This project exists to push back.**
