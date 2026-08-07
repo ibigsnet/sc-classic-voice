@@ -72,6 +72,25 @@ def unique_word_edge(old: str, new: str) -> float:
     return float(len(only_old) - len(only_new))
 
 
+_TAG_RE = re.compile(
+    r"(~mission\([^)]*\)|<[^>]+>|\\n|\\t)",
+    re.I,
+)
+
+
+def content_fingerprint(text: str) -> str:
+    """Normalize away mission tokens / markup so placeholder renames don't count as softens.
+
+    e.g. Stanton → ~mission(System) or Address → Destination|Target|Address
+    should not enter the classic-voice pack.
+    """
+    s = plain(text)
+    s = _TAG_RE.sub(" ", s)
+    s = re.sub(r"[^\w\s']+", " ", s, flags=re.UNICODE)
+    s = re.sub(r"\s+", " ", s).strip().lower()
+    return s
+
+
 def pick_best_historical(
     candidates: list[tuple[str, str, float]],
     tval: str,
@@ -91,20 +110,31 @@ def pick_best_historical(
       3. LOW similarity (<0.45): major rewrite → only take older if clearly
          harder (avoid restoring obsolete lore as "tone").
 
+    Gates:
+      - Skip pure placeholder/tag drift (content_fingerprint equal).
+      - require_harder: need hardness gain > threshold (true anti-soften).
+      - at-least-as-hard: need hardness gain ≥ 0 (never pack softer history).
+
     Returns (label, value, hardness, reason) or None.
     """
     t_hard = hardness_score(tval)
     t_plain = plain(tval)
+    t_fp = content_fingerprint(tval)
+    t_edges = edge_hits(tval)
 
     # Rank candidates with a sort key (higher tuple wins)
     ranked: list[tuple] = []
     for lab, val, h in candidates:
         if val == tval:
             continue
+        # Placeholder / mission-token renames only — not a soften.
+        if content_fingerprint(val) == t_fp:
+            continue
         sim = SequenceMatcher(None, plain(val), t_plain).ratio()
         age = older_labels.index(lab)  # smaller = older
         wdiff = unique_word_edge(val, tval)
         h_gain = h - t_hard
+        e_gain = len(edge_hits(val)) - len(t_edges)
 
         if sim >= 0.88:
             # Near-paraphrase: age is king; hardness/word-diff break ties
@@ -115,32 +145,31 @@ def pick_best_historical(
             reason = f"med_sim={sim:.3f}_prefer_harder"
         else:
             # Major rewrite — only compete if clearly harder
-            if h_gain <= max(min_hardness_gain, 5.0):
+            if h_gain <= max(min_hardness_gain, 5.0) and e_gain <= 0:
                 continue
             sort_key = (1, h_gain, h, -age)
             reason = f"low_sim={sim:.3f}_harder_only"
 
-        ranked.append((sort_key, lab, val, h, reason, sim, h_gain))
+        ranked.append((sort_key, lab, val, h, reason, sim, h_gain, e_gain))
 
     if not ranked:
         return None
 
     ranked.sort(key=lambda x: x[0], reverse=True)
-    _sk, lab, val, h, reason, sim, h_gain = ranked[0]
+    _sk, lab, val, h, reason, sim, h_gain, e_gain = ranked[0]
 
     if require_harder:
-        # high-sim softens: always allow oldest even if hardness score is flat
-        if sim < 0.88 and h_gain <= min_hardness_gain:
-            if not (
-                h_gain >= -0.01 and len(edge_hits(val)) > len(edge_hits(tval))
-            ):
-                return None
+        # Strict anti-soften: must actually score harder (or more edge hits).
+        # Do NOT pack high-sim zero-gain placeholder noise or flat rewrites.
+        if h_gain <= min_hardness_gain and e_gain <= 0:
+            return None
     else:
-        # at-least-as-hard OR high-sim older rewrite
-        if sim < 0.88 and h_gain < min_hardness_gain:
+        # At-least-as-hard: never restore a softer string.
+        if h_gain < min_hardness_gain:
             return None
 
-    return lab, val, h, f"{reason};gain={h_gain:.1f}"
+    return lab, val, h, f"{reason};gain={h_gain:.1f};edgeΔ={e_gain}"
+
 
 
 @dataclass
@@ -444,16 +473,20 @@ def main() -> None:
         md.append("</details>")
         md.append("")
 
-    (args.reports / "all-keys-change-ledger.md").write_text(
-        "\n".join(md), encoding="utf-8"
-    )
+    ledger_md = args.reports / f"all-keys-change-ledger-{args.name}.md"
+    ledger_md.write_text("\n".join(md), encoding="utf-8")
+    # Canonical ledger name for the strict anti-soften pack.
+    if args.name == "01-classic-all":
+        (args.reports / "all-keys-change-ledger.md").write_text(
+            "\n".join(md), encoding="utf-8"
+        )
 
     print(f"Pairwise wording changes: {len(step_changes)}")
     print(f"Softened steps: {len(softens)}  Hardened steps: {len(hardens)}")
-    print(f"Pack keys (classic-all): {len(pack)}")
+    print(f"Pack keys ({args.name}): {len(pack)}")
     print(f"Wrote {out_ini}")
     print(f"Wrote {meta_path}")
-    print(f"Wrote {args.reports / 'all-keys-change-ledger.md'}")
+    print(f"Wrote {ledger_md}")
     for m in sorted(meta, key=lambda x: -x["gain"])[:12]:
         print(f"  +{m['gain']:5.1f}  {m['key'][:50]:50}  ← {m['chosen_version']}")
 

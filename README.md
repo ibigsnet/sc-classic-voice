@@ -56,9 +56,10 @@ Every report uses **VCS-style wording diffs** (GitHub paints `-` red / `+` green
 | **Older/harder wording** (recommended) | [`packs/library/01-classic-all-at-least-as-hard.ini`](packs/library/01-classic-all-at-least-as-hard.ini) |
 | **Older/harder + BP/XP community** | [`packs/library/composed-classic-all-at-least-as-hard-plus-community.ini`](packs/library/composed-classic-all-at-least-as-hard-plus-community.ini) |
 | Strict “harder than stock only” | [`packs/library/01-classic-all.ini`](packs/library/01-classic-all.ini) |
-| Maps / receipts | [`reports/build-diffs.md`](reports/build-diffs.md), [`reports/all-keys-change-ledger.md`](reports/all-keys-change-ledger.md) |
+| Maps / receipts | [`reports/build-diffs.md`](reports/build-diffs.md), [`reports/all-keys-change-ledger.md`](reports/all-keys-change-ledger.md), [`reports/review-queue.md`](reports/review-queue.md) |
 
-Full guide: **[docs/PACK_LIBRARY.md](docs/PACK_LIBRARY.md)**. Works with **[Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen)** (Import INI).
+Full guide: **[docs/PACK_LIBRARY.md](docs/PACK_LIBRARY.md)**. Logic audit: **[docs/AUDIT.md](docs/AUDIT.md)**.  
+Works with **[Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen)** (Import INI).
 
 ## Related projects
 
@@ -77,44 +78,25 @@ See **[ROADMAP.md](ROADMAP.md)** for phases to full product (corpus, review, rel
 
 ## Quick start
 
-### 1. Corpus (local stock extracts)
+### Player (no Python)
 
-See [corpus/README.md](corpus/README.md). You need multiple versioned stock files, e.g. 4.3 → 4.10.
+1. Install **[Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen)**  
+2. Extract from Data.p4k  
+3. **Import INI** → recommended pack above  
+4. Apply  
 
-### 2. Map softens
+Details: **[docs/SMART_CITIZEN.md](docs/SMART_CITIZEN.md)**.
 
-```bash
-python3 scripts/map_softening.py
-```
+### Developer (rebuild after banking stock)
 
-Writes:
-
-- `reports/soften-map.md` — human-readable  
-- `reports/soften-map.json` / `.csv` — full event list  
-
-### 3. Build the pack
+See [corpus/README.md](corpus/README.md). Need multiple versioned stocks (4.3 → 4.10).
 
 ```bash
-python3 scripts/build_pack.py --target 4.10.0-PTU
+# One-shot: maps + packs + composed + spotlight + review queue + INDEX
+python3 scripts/rebuild_all.py --target 4.10.0-PTU
 ```
 
-Writes:
-
-- `packs/classic-voice-user.ini` — **only changed keys** (Smart Citizen import)  
-- `packs/classic-voice-user.meta.json` — which version each key came from  
-
-### 4. Use with Smart Citizen
-
-Install **[Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen)** first ([releases](https://github.com/Osiris-DevWorks/smart-citizen/releases)).
-
-Full steps: **[docs/SMART_CITIZEN.md](docs/SMART_CITIZEN.md)**.
-
-Short version:
-
-1. Smart Citizen → **Extract from Data.p4k**  
-2. (Optional) enable BP / XP / other enhancements  
-3. **Config → Import INI** → `packs/classic-voice-user.ini`  
-4. **Apply Enhancements**
+Or step-by-step: `map_softening.py` → `diff_builds.py` → `build_classic_all.py` → `build_library.py`.
 
 ## Example softens already detected (4.7 → 4.9+)
 
@@ -131,14 +113,13 @@ Intersec **Strategic Bombing** (`Intersec_TSG_BombRun_*`) first appeared in **4.
 ```text
 sc-classic-voice/
 ├── README.md
-├── docs/SMART_CITIZEN.md
-├── corpus/           # local stock .ini (gitignored)
-├── scripts/
-│   ├── map_softening.py
-│   ├── build_pack.py
-│   └── ini_util.py
-├── packs/            # generated delta INI (committed when small)
-└── reports/          # soften map outputs
+├── ROADMAP.md
+├── docs/             # SMART_CITIZEN, PACK_LIBRARY, DETECTION, AUDIT, EXAMPLES
+├── corpus/           # local stock .ini (not re-hosted on GitHub)
+├── wordlists/        # hard / soft / euphemism (editable)
+├── scripts/          # map, pick, phrase_diff, rebuild_all
+├── packs/library/    # classic + community + composed deltas
+└── reports/          # maps, ledger, spotlight, review-queue
 ```
 
 ## Going as far back as we can

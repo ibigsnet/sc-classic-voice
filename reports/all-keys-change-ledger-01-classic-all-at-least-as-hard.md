@@ -6,7 +6,7 @@
 - Pairwise text changes (any wording change): **1727**
 - Steps scored as **softened** (hardness dropped): **80**
 - Steps scored as **hardened**: **80**
-- Pack keys (harder than target, applied to current): **76**
+- Pack keys (harder than target, applied to current): **1165**
 
 ### How to read diffs
 

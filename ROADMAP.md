@@ -1,7 +1,7 @@
-# Roadmap — bringing sc-classic-voice to life
+# Roadmap — sc-classic-voice
 
-Status as of **v0.1.0** (first public cut): tooling + multi-version soften map + small high-confidence pack + Smart Citizen import path.  
-This document is the plan to grow that into a maintained, patch-following product players can trust.
+Status as of **post-audit rebuild** (2026-08-07): full corpus map, hardness-gated packs, VCS-style wording diffs, review queue, one-shot rebuild.  
+Logic check: **[docs/AUDIT.md](docs/AUDIT.md)**.
 
 ---
 
@@ -9,152 +9,127 @@ This document is the plan to grow that into a maintained, patch-following produc
 
 | Goal | Success looks like |
 |------|--------------------|
-| **Classic voice** | After each SC patch, players can re-apply older, less-softened mission/narrative wording in minutes |
-| **Evidence-based** | Every restored string traces to a stock extract version (not invented fanfic) |
-| **Composable** | Works *with* Smart Citizen (and headless Linux tools)—not a competing full editor |
-| **Honest scope** | We fix *wording*, not balance, netcode, or politics of the live servers |
+| **Classic voice** | After each SC patch, players re-apply older, less-softened wording in minutes |
+| **Evidence-based** | Every restored string traces to a stock extract version |
+| **Composable** | Works with Smart Citizen (Import INI) — not a competing full editor |
+| **Honest scope** | Wording only — not balance, netcode, or invented fanfic |
 
 ---
 
-## What already ships (v0.1)
+## What already ships
 
 - [x] Public repo + manifesto README  
-- [x] Corpus layout (local versioned stocks; not re-hosted full CIG dumps)  
-- [x] `map_softening.py` — pair-wise soften detection (4.3 → 4.10)  
-- [x] `build_pack.py` — high-confidence delta `classic-voice-user.ini`  
-- [x] Reports: `soften-map.md` / `.json` / `.csv`  
-- [x] Smart Citizen integration doc (`docs/SMART_CITIZEN.md`)  
-- [x] Example restores (Headhunter bombing-run softens 4.7 → later)
+- [x] Corpus 4.3.2 → 4.10 (incl. **4.8.0-PTU**); local stocks not re-hosted  
+- [x] Soften map + full build-to-build diffs (~1.7k pairwise changes)  
+- [x] Hardness pick across **all keys / all versions** (`build_classic_all.py`)  
+- [x] Pack library: strict / at-least-as-hard / broad / community / composed  
+- [x] Editable `wordlists/` + euphemism pairs (reverse of studio sanitize lists)  
+- [x] Phrase-level red/green diffs everywhere (`phrase_diff.py`)  
+- [x] `rebuild_all.py` + `review-queue.md`  
+- [x] Smart Citizen integration doc  
+- [x] Flagship Headhunter softens restored (living hell, bomb→blow, bombing run→attack)  
 
-**Known limits of v0.1**
+**Known limits**
 
-- Pack is **small** (~4 keys at high confidence)—most of the 290 “events” need human review  
-- **No 4.8** pure stock in corpus (gap between 4.7 and 4.9)  
-- No auto-install to game / no CI that extracts from P4K  
-- Detection heuristics will false-positive (news blurbs, unrelated rewrites)
-
----
-
-## Phase 1 — Corpus & truth (foundation)
-
-*Make the history complete and trustworthy.*
-
-| Step | Work | Done when |
-|------|------|-----------|
-| 1.1 | Add **4.8.x LIVE/PTU** stock extracts to corpus | `4.8.*-*.ini` linked; re-map shows new pairs |
-| 1.2 | Optional: EPTU / HOTFIX / TECH-PREVIEW snapshots when they diverge | Manifest lists channel + CL / build id |
-| 1.3 | `corpus/manifest.json` — version, channel, build stamp, key count, sha256 | One file describes every extract |
-| 1.4 | Document **how to extract** stock (Smart Citizen, sc-loc-mods, unp4k path) | CONTRIBUTING.md “Adding a version” section |
-| 1.5 | Store **key fingerprints only** for CI if we never want full INIs in git | Optional later; keep full INIs local |
-
-**Exit:** Any new patch can be dropped in as one named file and the map re-runs cleanly.
+- Low-sim “harder” rewrites (newspapers, some industrial titles) still auto-pack — need human allow/deny  
+- No 3.x / early 4.0–4.2 / pure 4.8 LIVE finals yet  
+- No tagged GitHub Release zip for non-git players yet  
+- No auto-install to game client (Smart Citizen / manual apply)
 
 ---
 
-## Phase 2 — Detection quality (smarter map)
+## Phase 1 — Corpus & truth
 
-*Fewer false positives, clearer “this is a soften.”*
-
-| Step | Work | Done when |
-|------|------|-----------|
-| 2.1 | Split event classes: `tone_soften`, `lore_rewrite`, `typo_fix`, `placeholder`, `noise` | CSV/JSON has `class` field |
-| 2.2 | Expand euphemism dictionary from real map reviews | New pairs land in `map_softening.py` after each pass |
-| 2.3 | Focus filters: mission Desc/Title first; deprioritize item fluff / newspapers unless edge lost | Default pack build uses focus filter |
-| 2.4 | **Human review queue** — `reports/review-queue.md` top N by score | Maintainers check boxes |
-| 2.5 | Allowlist / denylist keys (`patches/allowlist.txt`, `denylist.txt`) | Pack only ships allowlisted or auto+reviewed |
-| 2.6 | Side-by-side HTML report (old vs new, highlighted) | Optional `reports/soften-diff.html` |
-
-**Exit:** You can open the map and trust “high confidence” without reading 290 rows of noise.
+| Step | Work | Status |
+|------|------|--------|
+| 1.1 | 4.8.x stock in corpus | ✅ 4.8.0-PTU |
+| 1.2 | EPTU / HOTFIX when they diverge | partial (4.7 HOTFIX) |
+| 1.3 | `corpus/manifest.json` | ✅ |
+| 1.4 | How to extract stock | ✅ CORPUS_SOURCES.md |
+| 1.5 | Bank 3.x / 4.0–4.2 / 4.8 LIVE | open |
 
 ---
 
-## Phase 3 — Pack product (what players download)
+## Phase 2 — Detection quality
 
-*A real release artifact, not just a script output.*
-
-| Step | Work | Done when |
-|------|------|-----------|
-| 3.1 | **Allowlist-curated pack** — only reviewed keys | `packs/classic-voice-user.ini` is intentional, not pure auto |
-| 3.2 | Version the pack (`packs/VERSION`, release tags `v0.2.0`) | GitHub Release with zip |
-| 3.3 | Channels: note “built for stock keys present in 4.10; safe no-op if key missing” | Documented in pack header |
-| 3.4 | Optional **profile packs**: `strict` (edge-only), `broad` (more rewrites) | Two INIs or build flags |
-| 3.5 | Keep personal overlays separate (Ironchad, ScComp renames, BP notes) | `packs/personal/` gitignored or other repo |
-
-**Exit:** A player who never runs Python can download a release zip and import one file.
-
----
-
-## Phase 4 — Smart Citizen & install paths
-
-*Make “use it” brainless.*
-
-| Step | Work | Done when |
-|------|------|-----------|
-| 4.1 | One-page **player install** (Smart Citizen Import INI) with screenshots | `docs/INSTALL.md` |
-| 4.2 | Linux / Wine path: merge overlay with sc-loc-mods or a tiny `apply_pack.py` | Script installs to `data/Localization/english/` |
-| 4.3 | Compose order documented: stock → SC enhancements → classic-voice → personal | Diagram in SMART_CITIZEN.md |
-| 4.4 | Optional: issue template “new soften after patch X” | `.github/ISSUE_TEMPLATE/` |
-| 4.5 | Test: apply pack on clean stock; key count; spot-check Headhunter lines in-game | Checklist in release notes |
-
-**Exit:** README “Quick start” is player-first; developer path secondary.
+| Step | Work | Status |
+|------|------|--------|
+| 2.1 | Event classes (tone / lore / placeholder / noise) | open |
+| 2.2 | Expand euphemism + hard/soft lists from reviews | ongoing |
+| 2.3 | Focus mission Desc/Title; deprioritize newspapers | open |
+| 2.4 | Human review queue | ✅ `reports/review-queue.md` |
+| 2.5 | Allowlist / denylist keys | open |
+| 2.6 | Phrase red/green diffs | ✅ all major reports |
+| 2.7 | Placeholder/token-only skip | ✅ content_fingerprint |
+| 2.8 | require_harder needs real hardness gain | ✅ |
 
 ---
 
-## Phase 5 — Patch loop (stay alive every update)
+## Phase 3 — Pack product
 
-*This is the real product: survive rolling SC updates.*
-
-| Step | Work | Done when |
-|------|------|-----------|
-| 5.1 | After each LIVE/PTU: extract stock → map → review new events → rebuild pack | Written runbook `docs/PATCH_RUNBOOK.md` |
-| 5.2 | Diff pack vs previous release (`pack-diff.md`) | Release notes list gained/lost keys |
-| 5.3 | Keys removed by CIG: drop or mark obsolete in meta | meta.json has `status: obsolete` |
-| 5.4 | Optional notify (Discord webhook / GitHub Action on schedule) | “new stock detected” if you host extracts |
-| 5.5 | Wire to **sc-loc-mods** full pipeline for your machine | One command: extract + classic-voice + mission notes + install |
-
-**Exit:** Patch day is a 30–60 minute ritual, not a research project.
+| Step | Work | Status |
+|------|------|--------|
+| 3.1 | Allowlist-curated release pack | next |
+| 3.2 | GitHub Release `v0.2.0` with zip | next |
+| 3.3 | Document target stock keys | partial |
+| 3.4 | Profile packs (strict / broad / alash) | ✅ |
+| 3.5 | Personal overlays separate | ✅ decision |
 
 ---
 
-## Phase 6 — Growth (optional, later)
+## Phase 4 — Install paths
 
-| Step | Work | Notes |
-|------|------|-------|
-| 6.1 | Community PRs of reviewed softens | Need contribution rules (evidence = stock pair) |
-| 6.2 | Website / Pages with soften gallery | Nice-to-have |
-| 6.3 | Deeper DataForge-era strings (if ever exposed differently) | Out of scope until needed |
-| 6.4 | Non-English classic voice | Only if someone maintains translations |
+| Step | Work | Status |
+|------|------|--------|
+| 4.1 | `docs/INSTALL.md` player path | next |
+| 4.2 | Linux apply script | open |
+| 4.3 | Compose order with Smart Citizen | ✅ SMART_CITIZEN.md |
+| 4.4 | Issue template “new soften after patch” | open |
+| 4.5 | In-game spot-check checklist | open |
 
 ---
 
-## Suggested near-term order (next 2–4 sessions)
+## Phase 5 — Patch loop
+
+| Step | Work | Status |
+|------|------|--------|
+| 5.1 | `docs/PATCH_RUNBOOK.md` | next |
+| 5.2 | Pack diff vs previous release | open |
+| 5.3 | Obsolete keys when CIG removes them | open |
+| 5.4 | Optional notify | open |
+| 5.5 | Wire to local sc-loc-mods pipeline | open |
+
+---
+
+## Near-term order (this project)
 
 ```text
-1. Extract & add 4.8 stock to corpus → re-run map
-2. Human-review top soften-map.md rows → allowlist
-3. Rebuild pack; cut GitHub Release v0.2.0 (downloadable INI)
-4. Write docs/INSTALL.md + docs/PATCH_RUNBOOK.md
-5. apply_pack.py for Linux (your box + sc-loc-mods merge)
-6. After next SC patch: run the runbook once end-to-end
+1. ✅ Audit + fix pick logic (placeholder noise, bomb/blow scoring)
+2. ✅ Rebuild packs + review queue + INDEX
+3. → Human-review review-queue.md; seed allowlist.txt
+4. → docs/INSTALL.md + GitHub Release v0.2.0
+5. → PATCH_RUNBOOK.md; bank next LIVE/PTU stock when available
+6. → Optional denylist: Journal_General_FrontendNewspaper*
 ```
 
 ---
 
 ## Explicit non-goals (for now)
 
-- Replacing Smart Citizen or ScCompLangPack  
-- Inventing new mission text that never shipped in stock  
-- Hosting full multi-megabyte stock `global.ini` on GitHub  
-- “Fixing” CIG’s politics on Spectrum—only **your client’s strings**
+- Replacing Smart Citizen  
+- Inventing mission text that never shipped in stock  
+- Hosting full multi-MB stock `global.ini` on GitHub  
+- “Fixing” CIG’s politics on Spectrum — only **your client’s strings**
 
 ---
 
-## Decision log (fill as we go)
+## Decision log
 
 | Date | Decision |
 |------|----------|
-| 2026-08-07 | Project born; v0.1 auto pack + map; Smart Citizen import path |
-| | Prefer **evidence from stock history**, not fan rewrites |
-| | Personal renames (Ironchad) stay out of public classic-voice pack unless curated later |
-| 2026-08-07 | Expanded corpus: 4.7.x tags + **4.8.0-PTU** stock from ScCompLangPackRemix git history; corpus bank + manifest; CORPUS_SOURCES doc |
-
+| 2026-08-07 | Project born; evidence from stock history, not fan rewrites |
+| 2026-08-07 | Personal renames (Ironchad) stay out of public classic packs |
+| 2026-08-07 | Phrase-level VCS diffs on every report |
+| 2026-08-07 | High-sim alone ≠ require_harder; need hardness/edge gain |
+| 2026-08-07 | Placeholder/token-only drift is not classic voice |
+| 2026-08-07 | Soft substitutes (e.g. blow the life) must not be listed as hard words |

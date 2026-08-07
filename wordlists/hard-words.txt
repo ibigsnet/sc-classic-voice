@@ -3,12 +3,15 @@
 # Curated for merc/outlaw/combat tone — not a full internet hate list.
 
 # --- Flagship softens we've already seen ---
+# NOTE: do NOT list the soft substitute (e.g. "blow the life") as hard —
+# that made bomb→blow score equal and drop out of require_harder packs.
 living hell
 bomb the life
 bomb the living
 bombing run
 bomb the
-blow the life
+bomb
+bombing
 
 # --- Strong language ---
 shit

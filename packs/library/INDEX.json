@@ -1,57 +1,50 @@
 {
   "target": "4.10.0-PTU",
-  "policy": "Walk ALL keys on the target build across ALL corpus versions. When wording differs, score hardness; pick highest hardness, ties \u2192 oldest. Packs are deltas for CURRENT builds.",
+  "policy": "Walk ALL keys on the target build across ALL corpus versions. Skip placeholder/tag-only drift. Score hardness; pick higher hardness (ties \u2192 oldest). require_harder packs need gain>0.",
   "maps": {
-    "reports/build-diffs.md": "Every text change between consecutive builds",
+    "reports/build-diffs.md": "Every text change + phrase-level red/green diffs",
     "reports/all-keys-change-ledger.md": "Hardness-scored softens + pack restores",
-    "reports/all-keys-step-changes.json": "Full pairwise step list",
-    "reports/soften-map.md": "Heuristic soften detector"
+    "reports/soften-map.md": "Heuristic soften detector with diffs",
+    "reports/spotlight-hard-vs-soft-4.7-4.8.md": "Flagship Headhunter softens",
+    "reports/review-queue.md": "Human review queue for high-confidence softens"
   },
   "packs": {
-    "01-classic-all-at-least-as-hard.ini": {
-      "keys": 1512,
-      "bytes": 441495,
-      "role": "Older wording when hardness \u2265 current (larger)"
-    },
     "01-classic-all.ini": {
-      "keys": 14,
-      "bytes": 15675,
+      "keys": 76,
       "role": "Strictly HARDER than current soft stock (anti-soften core)"
+    },
+    "01-classic-all-at-least-as-hard.ini": {
+      "keys": 1165,
+      "role": "Older wording when hardness \u2265 current (recommended classic)"
     },
     "01-classic-broad.ini": {
       "keys": 608,
-      "bytes": 310048,
       "role": "Oldest stock narrative text whenever narrative keys changed"
     },
     "01-classic-strict.ini": {
-      "keys": 4,
-      "bytes": 3819,
+      "keys": 7,
       "role": "High-confidence soften phrases only"
     },
     "02-community-mission-enhancements.ini": {
       "keys": 1570,
-      "bytes": 1278556,
       "role": "BP/XP/mission-details community layer"
     },
     "composed-classic-all-at-least-as-hard-plus-community.ini": {
-      "keys": 2960,
-      "bytes": 1647725,
-      "role": "at-least-as-hard + community"
+      "keys": 2655,
+      "role": "Recommended full: at-least-as-hard + community BP/XP"
     },
     "composed-classic-all-plus-community.ini": {
-      "keys": 1576,
-      "bytes": 1294789,
-      "role": "classic-all + community BP/XP"
+      "keys": 1602,
+      "role": "strict-harder classic + community"
     },
     "composed-classic-broad-plus-community.ini": {
       "keys": 2134,
-      "bytes": 1566801,
       "role": "broad oldest + community"
     },
     "composed-classic-strict-plus-community.ini": {
-      "keys": 1572,
-      "bytes": 1292138,
+      "keys": 1575,
       "role": "strict softens + community"
     }
-  }
+  },
+  "rebuild": "python3 scripts/rebuild_all.py --target 4.10.0-PTU"
 }

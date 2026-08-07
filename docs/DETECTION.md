@@ -137,6 +137,18 @@ All human reports call `scripts/phrase_diff.py`:
 | Inline (high-sim) | `~~removed~~` **added** with context |
 | Full previews | folded under `<details>` |
 
+### Gates that prevent nonsense packs
+
+| Gate | Effect |
+|------|--------|
+| `content_fingerprint` | Skip mission-token / markup-only renames |
+| `require_harder` | Pack only if hardness gain **> 0** (or more edge hits) |
+| `at-least-as-hard` | Pack only if hardness gain **≥ 0** |
+| Euphemism pairs in score | Soft form without hard form is penalized (bomb→blow ranks) |
+| Soft substitutes not on hard list | Never list `blow the life` as hard if it is the soft of `bomb the life` |
+
+Full audit: [AUDIT.md](AUDIT.md).
+
 ---
 
 ## Step 5: Soften event score (for soften-map reports)

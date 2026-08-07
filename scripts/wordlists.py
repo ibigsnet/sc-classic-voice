@@ -84,16 +84,31 @@ def soft_hits(text: str) -> list[str]:
 
 
 def hardness_from_lists(text: str) -> float:
-    """Score from editable wordlists only (boosts + penalties)."""
+    """Score from editable wordlists only (boosts + penalties).
+
+    Also applies euphemism-pairs.tsv: hard form present → boost;
+    soft form present without hard form → penalty (so bomb→blow ranks).
+    """
+    t = text.replace("\\n", "\n")
     score = 0.0
     # longer phrases first conceptually — count each hit once
     for name, pat in hard_patterns():
-        if pat.search(text.replace("\\n", "\n")):
+        if pat.search(t):
             # weight multiword harder phrases more
             score += 8.0 + 4.0 * max(0, len(name.split()) - 1)
     for name, pat in soft_patterns():
-        if pat.search(text.replace("\\n", "\n")):
+        if pat.search(t):
             score -= 10.0
+    # Known hard→soft substitutions (editable TSV)
+    for hard_p, soft_p in euphemism_pairs():
+        h_pat = _phrase_pattern(hard_p)
+        s_pat = _phrase_pattern(soft_p)
+        has_h = bool(h_pat.search(t))
+        has_s = bool(s_pat.search(t))
+        if has_h:
+            score += 6.0 + 2.0 * max(0, len(hard_p.split()) - 1)
+        elif has_s:
+            score -= 12.0
     if len(text) > 200:
         score += 1.0
     return score

@@ -1,16 +1,17 @@
 # Pack library — hard wording for current builds
 
+Detection details (word lists, hardness formula): **[DETECTION.md](DETECTION.md)**.  
+Logic audit: **[AUDIT.md](AUDIT.md)**.
+
 ## Goal
-
-Detection details (word lists, hardness formula): **[DETECTION.md](DETECTION.md)**.
-
 
 CIG softens strings over time. We:
 
 1. **Compare every key** across **every banked stock** (as far back as we have)  
-2. **Detect when wording changed** between builds  
-3. **Pick older / harder** text  
-4. Ship that as a **delta pack for the latest build** (keys that still exist)
+2. **Skip placeholder/tag-only drift** (e.g. `Stanton` → `~mission(System)`)  
+3. **Score hardness** (hard words boost; soft/euphemism forms penalize)  
+4. **Pick older / harder** text  
+5. Ship that as a **delta pack for the latest build** (keys that still exist)
 
 **Not yet:** inventing OG voice for brand-new missions that never had old stock (planned later).
 
@@ -22,48 +23,47 @@ CIG softens strings over time. We:
 For each key on TARGET (e.g. 4.10 p4k stock):
   history = [text from 4.3.2, 4.4, …, 4.9] if key exists
   if all history == target → skip
+  if only mission-tokens/tags differ → skip (not a soften)
   score each historical string for HARDNESS
-    (living hell, bomb, kill, shit, … boost;
-     mess the place up, neutralize, kindly, … reduce)
   winner = max hardness; ties → OLDEST version
-  if winner is harder (or ≥ target) than current stock → pack it
+  01-classic-all:          only if hardness strictly higher than target
+  01-classic-all-at-least-as-hard: if hardness ≥ target
 ```
 
 Full receipts:
 
 | Report | What |
 |--------|------|
-| [`reports/build-diffs.md`](../reports/build-diffs.md) | **All** text changes between consecutive builds (~1.7k steps) |
-| [`reports/all-keys-change-ledger.md`](../reports/all-keys-change-ledger.md) | Soften steps + hardness-based restores |
-| [`reports/all-keys-step-changes.json`](../reports/all-keys-step-changes.json) | Machine full step list |
-| [`reports/spotlight-hard-vs-soft-4.7-4.8.md`](../reports/spotlight-hard-vs-soft-4.7-4.8.md) | Famous living-hell example with red/green wording diffs |
+| [`reports/build-diffs.md`](../reports/build-diffs.md) | **All** text changes + red/green phrase diffs |
+| [`reports/all-keys-change-ledger.md`](../reports/all-keys-change-ledger.md) | Strict pack restores (hardness gain > 0) |
+| [`reports/soften-map.md`](../reports/soften-map.md) | Heuristic soften detector |
+| [`reports/spotlight-hard-vs-soft-4.7-4.8.md`](../reports/spotlight-hard-vs-soft-4.7-4.8.md) | Flagship living-hell / bomb-run |
+| [`reports/review-queue.md`](../reports/review-queue.md) | Human review checklist |
 
-Rebuild:
+Rebuild everything:
 
 ```bash
-python3 scripts/diff_builds.py --target 4.10.0-PTU
-python3 scripts/build_classic_all.py --target 4.10.0-PTU --require-harder --name 01-classic-all
-python3 scripts/build_classic_all.py --target 4.10.0-PTU --no-require-harder --name 01-classic-all-at-least-as-hard
-python3 scripts/build_library.py --target 4.10.0-PTU   # broad + community + some composed
-# then merge_layers for classic-all ± community (see scripts)
+python3 scripts/rebuild_all.py --target 4.10.0-PTU
 ```
 
 ---
 
 ## Download which pack?
 
-| Pack | ~Keys | Use |
-|------|------:|-----|
-| **`01-classic-all.ini`** | 14 | Only strings **strictly harder** than current soft stock |
-| **`01-classic-all-at-least-as-hard.ini`** | **1512** | **Recommended classic:** older wording when ≥ as hard as now |
-| **`01-classic-broad.ini`** | 608 | Oldest narrative stock whenever text changed (no hardness gate) |
-| **`01-classic-strict.ini`** | 4 | Tiny phrase-level softens only |
-| **`02-community-mission-enhancements.ini`** | 1570 | BP / XP / MISSION DETAILS style (community fixtures) |
-| **`composed-classic-all-at-least-as-hard-plus-community.ini`** | **2960** | **Recommended full:** classic + BP/XP |
-| `composed-classic-all-plus-community.ini` | 1576 | Strict-harder classic + community |
-| `composed-classic-broad-plus-community.ini` | 2134 | Broad oldest + community |
+Live counts from `packs/library/INDEX.json` (regenerated on rebuild):
 
-See `packs/library/INDEX.json` for exact counts.
+| Pack | Role |
+|------|------|
+| **`01-classic-all-at-least-as-hard.ini`** | **Recommended classic** — older wording when hardness ≥ current |
+| **`composed-classic-all-at-least-as-hard-plus-community.ini`** | **Recommended full** — classic + BP/XP community |
+| **`01-classic-all.ini`** | Surgical — only **strictly harder** than stock (anti-soften core) |
+| `01-classic-broad.ini` | Oldest narrative stock whenever text changed (no hardness gate) |
+| `01-classic-strict.ini` | Tiny high-confidence soften phrases only |
+| `02-community-mission-enhancements.ini` | BP / XP / MISSION DETAILS style (community fixtures) |
+| `composed-classic-all-plus-community.ini` | Strict-harder classic + community |
+| `composed-classic-broad-plus-community.ini` | Broad oldest + community |
+
+See `packs/library/INDEX.json` for exact key counts after each rebuild.
 
 ---
 
@@ -75,12 +75,10 @@ https://github.com/Osiris-DevWorks/smart-citizen
 2. **Import INI** → choose pack above  
 3. Apply  
 
-Recipes:
-
 | Want | Import |
 |------|--------|
 | Hard wording only | `01-classic-all-at-least-as-hard.ini` |
-| Hard wording + BP/XP community style | `composed-classic-all-at-least-as-hard-plus-community.ini` |
+| Hard wording + BP/XP | `composed-classic-all-at-least-as-hard-plus-community.ini` |
 | Surgical softens only | `01-classic-all.ini` or `01-classic-strict.ini` |
 
 ---
