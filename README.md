@@ -8,11 +8,20 @@ Star Citizen used to sound like a hard sci-fi outlaw sandbox: rough contract bri
 
 We track wording changes across stock localization history and build **fan localization packs** that restore the less-softened (older, sharper) strings wherever those keys still exist. You can drop the pack into your install—or import it into [Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen)—and undo the studio’s recent tone policing in your client without waiting for CIG to grow a spine.
 
+### We’ve seen this movie before
+
+When a franchise loses its spine—new leadership, new “broad audience” mandate, identity sanded off for safety—the game dies long before the servers do. Halo is the cautionary tale: a property that once owned the culture, then got run into the ground by the wrong direction after the old soul left the building.
+
+Worth the watch: **[Why Halo died](https://youtu.be/kkHVTAkaMdk)** (AndyPants Gaming).
+
+Star Citizen is not Halo. Different studio, different tech debt, different mess. But the **pattern** is what we care about: when the fiction starts apologizing for itself, when edge becomes PR-safe mush, you’re watching the same slide. **We don’t want that outcome here.** Classic voice packs won’t fix netcode or ship balance—but they *do* keep the verse from sounding like it was rewritten for people who get the vapors at a Headhunters contract. Death by a thousand softens is still death.
+
 ### What we believe
 - A mercenary game should **sound** like a mercenary game.  
 - Softening every contract for maximum mass-market comfort is the **wrong direction**.  
 - Players should be free to run **classic voice** on their own machines.  
-- Localization overlays are the lawful, CIG-discussed channel for community string work—we use that lane to reject the watered-down rewrites.
+- Localization overlays are the lawful, CIG-discussed channel for community string work—we use that lane to reject the watered-down rewrites.  
+- Franchises die when they forget who they were for. We’re not waiting politely for SC to finish that journey.
 
 ### What this repo does
 1. **Maps** softens across versioned stock `global.ini` extracts (4.3 → 4.10 and expanding)  
