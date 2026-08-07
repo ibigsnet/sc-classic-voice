@@ -1,10 +1,19 @@
 # Using sc-classic-voice with Smart Citizen
 
-[Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen) is a full localization editor. This project produces a **small delta INI** of preferred older wording — not a fork of Smart Citizen.
+| | |
+|--|--|
+| **Smart Citizen repo** | https://github.com/Osiris-DevWorks/smart-citizen |
+| **Downloads** | https://github.com/Osiris-DevWorks/smart-citizen/releases |
+| **Linux (Wine)** | https://github.com/Osiris-DevWorks/smart-citizen/blob/main/docs/LINUX.md |
+| **This project** | https://github.com/ibigsnet/sc-classic-voice |
+
+[Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen) (Osiris DevWorks) is a full localization editor: extract stock strings from `Data.p4k`, auto-enhancements (mission BP tags, XP, ship/item stats, etc.), merge sources, and Apply to the game with backups.
+
+**sc-classic-voice** produces a **small delta INI** of preferred older wording — not a fork of Smart Citizen. Import it so classic voice stacks **on top** of their enhancements.
 
 ## Recommended workflow
 
-1. Install / open **Smart Citizen** and select your channel (LIVE / PTU / …).
+1. Install **[Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen/releases)** and select your channel (LIVE / PTU / …).
 2. **Extract from Data.p4k** so stock strings match your current build.
 3. Enable any auto-enhancements you want (mission BP tags, XP, stats, …).
 4. **Config → Import INI** and choose:

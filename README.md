@@ -38,6 +38,17 @@ This is a **fan localization overlay** (same class as community language packs).
 Smart Citizen already does extract, merge, BP/XP enhancements, and Apply.  
 **sc-classic-voice** is the *anti-soften / classic voice* layer—a small `user.ini`-style delta you import so their auto enhancements and our restored wording stack cleanly. Use both.
 
+## Related projects
+
+| Project | Role | Link |
+|---------|------|------|
+| **Smart Citizen** | Full localization editor: extract from `Data.p4k`, BP/XP/stat enhancements, Apply + backups. **Import our pack as user overrides.** | [github.com/Osiris-DevWorks/smart-citizen](https://github.com/Osiris-DevWorks/smart-citizen) |
+| Smart Citizen releases | Windows installer / portable builds | [Releases](https://github.com/Osiris-DevWorks/smart-citizen/releases) |
+| Smart Citizen on Linux | Wine / same prefix as SC | [docs/LINUX.md](https://github.com/Osiris-DevWorks/smart-citizen/blob/main/docs/LINUX.md) |
+| This pack + Smart Citizen | Step-by-step import order | **[docs/SMART_CITIZEN.md](docs/SMART_CITIZEN.md)** |
+
+**sc-classic-voice does not replace Smart Citizen.** Use Smart Citizen for extract, enhancements, and Apply; use this repo for the **classic / unsoftened wording** layer.
+
 ## Roadmap
 
 See **[ROADMAP.md](ROADMAP.md)** for phases to full product (corpus, review, releases, patch loop).
@@ -72,9 +83,16 @@ Writes:
 
 ### 4. Use with Smart Citizen
 
-See **[docs/SMART_CITIZEN.md](docs/SMART_CITIZEN.md)**.
+Install **[Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen)** first ([releases](https://github.com/Osiris-DevWorks/smart-citizen/releases)).
 
-Short version: Extract → (optional enhancements) → **Import INI** `classic-voice-user.ini` → Apply.
+Full steps: **[docs/SMART_CITIZEN.md](docs/SMART_CITIZEN.md)**.
+
+Short version:
+
+1. Smart Citizen → **Extract from Data.p4k**  
+2. (Optional) enable BP / XP / other enhancements  
+3. **Config → Import INI** → `packs/classic-voice-user.ini`  
+4. **Apply Enhancements**
 
 ## Example softens already detected (4.7 → 4.9+)
 
@@ -126,7 +144,7 @@ python3 scripts/build_pack.py --target 4.10.0-PTU
 - Fan use of `global.ini` overlays is discussed by CIG in the [Community Localization Update](https://robertsspaceindustries.com/spectrum/community/SC/forum/1/thread/star-citizen-community-localization-update).  
 - **Do not** commit or re-host full stock `global.ini` dumps from `Data.p4k` in this repo.  
 - Star Citizen and related marks are property of Cloud Imperium.  
-- Smart Citizen is Apache-2.0 by Osiris DevWorks — we integrate with it; we do not rebrand it.
+- [Smart Citizen](https://github.com/Osiris-DevWorks/smart-citizen) is Apache-2.0 by [Osiris DevWorks](https://github.com/Osiris-DevWorks) — we integrate with it; we do not rebrand it.
 
 ## License
 
