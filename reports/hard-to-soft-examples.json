@@ -1,0 +1,184 @@
+[
+  {
+    "key": "headhunters_bombingrun_multi_E_CFP_desc_001",
+    "from": "4.3.2-LIVE",
+    "hard_from": 92.0,
+    "hard_to": 7.0,
+    "gain": 85.0,
+    "old": "Every day it seems like Citizens for Prosperity is out here trying to snatch up more people for their shitty little cause and make life more difficult for hardworkin' folks like ourselves. \n\nI figure they could use a reminder about who really is in charge here. Head to ~mission(Location|Address) and bomb the living hell out of the area. \n\nNothing like a bit of property damage to get a point across.\n\n-Stows out",
+    "new": "Every day it seems like Citizens for Prosperity is out here trying to snatch up more people for their shitty little cause and make life more difficult for hardworkin' folks like ourselves. \n\nI figure they could use a reminder about who really is in charge here. Head to ~mission(Location|Address) and really mess the place up. \n\nNothing like a bit of property damage to get a point across.\n\n-Stows out",
+    "sim": 0.926,
+    "edge_old": [
+      "living_hell",
+      "bomb_the_living",
+      "hell",
+      "shit"
+    ],
+    "edge_new": [
+      "shit"
+    ]
+  },
+  {
+    "key": "Journal_General_FrontendNewspaperHeadlines_Content",
+    "from": "4.5.0-LIVE",
+    "hard_from": 37.0,
+    "hard_to": 1.0,
+    "gain": 36.0,
+    "old": "Terra Gazette\nDecember 2955\n\nFTL COMMS BREAKTHROUGH\nScientists reveal cutting-edge discovery allowing for real-time inter-system comms.\n\n\u201cThe universe has just grown a bit smaller,\u201d said lead researcher Dr. Allo Betel as they demonstrated the first public test of faster-than-light communications to a stunned crowd. Speaking in real time from the press conference in New York, Sol system to a colleague located in Prime, Terra system, Dr. Betel made history with a transmission of \u201cCan you hear me?\u201d While the current system of jump tunnel comm-drones had been improved over the centuries to greatly reduce the delay in sending data between systems, being able to communicate instantaneously, no matter the distance, has been heralded as one of the greatest technological breakthroughs of this century. Utilizing a similar entanglement technology to the regeneration process\u2019 Ibrahim spheres, Dr. Betel credited Imperator Addison\u2019s Second Life Initiative for paving the way for the discovery to be made. \n\n\nTERRORIST LEADER SLAIN\nInfamous leader of the Frontier Fighters, Amelia Boyd, killed by Headhunters gang.\n\nAfter last month\u2019s coordinated assault on the Pyro system utilizing multiple stolen RSI Polaris, leader of the terrorist organization Frontier Fighters, Amelia Boyd, has been brutally executed following her capture by the notorious outlaw group the Headhunters. Despite Citizens for Prosperity\u2019s inability to hand Boyd over to UEE authorities to face justice, there is hope that with the Frontier Fighter\u2019s leader now deceased that the group will no longer to be a threat.  \n\n\nWEAPONS OF MASS CELEBRATION?\nRetailers report that Luminalia-themed weapons are this year\u2019s most popular gift.\n\nIn what is considered by some to be a concerning sign of the times, sales of Luminalia-themed weapons have sky-rocketed this year to become the holiday\u2019s most sought-after gift. While some have been quick to point out the irony of giving a weapon on a holiday about togetherness, others say that they make a thoughtful gift as threats from piracy and Vanduul continue to rise. \n\n\nCONSUMER SPECIAL: ARE FUSES FAILING MORE FREQUENTLY?\n\u201cFeels like I have to change them all the time now,\u201d claims one pilot. Our special report investigates.\n\n\nSENATE TO DISCUSS POTENTIAL NYX RE-EVALUATION\nWith the terraformation of Nyx I underway, could the UEE reverse course and finally claim the system?\n\n",
+    "new": "VOX POPULI\nRelease Edition 4.7.0\n\nUEE INTERSYSTEM COMM NETWORK HACKED \nAnother rushed initiative by the crumbling empire once again proves an unacceptable lack of forethought and basic governance.  \n\nSeemingly having learned nothing from the botched introduction of regen tech, Imperator Addison and her over-eager administration had only just finished implementing a full overhaul of the comm network utilizing an untested new technology to allow for instantaneous intersystem transmission when the news broke that the recently unveiled network had experienced a massive data breach resulting in the loss of millions of credits. While we await the full details of the hack and the results of the Advocacy\u2019s so-called \u2018investigation,\u2019 the People\u2019s Alliance strongly advises that any sensitive data still be physically transported to ensure its protection. This whole sordid episode serves as yet another reminder that while progress is necessary and inevitable, it must be tempered by measured reason.  \n\nNYX I LANDGRAB CONTINUES UNABATED\nFollowing the experimental terraformation of the planet, interested parties continue to stake claims.\n\nWith numerous outposts being established across its recently renewed surface, the development boom plaguing Nyx I shows no signs of slowing. Most concerning are reports of a new group who seem to be establishing fortified settlements at an alarming rate. While it is not yet clear who these newcomers to Nyx are or what their intentions might be, what is rapidly becoming apparent is that if the People\u2019s Alliance do not start to take the task of settling on Nyx I seriously, there is a high chance that there will be only scraps left on the table when the governing committee does decide to act.\n\nDUBIOUS SHUBIN MINING RIGHTS   \nAs the massive conglomerate continues to pillage the system, many miners question their standing in Nyx.\n\nIt seems ironic that the ghost of QV Planet Services should be resurrected by another mining company that shows little concern for the People\u2019s Alliance and their ideals. Having scouted the system for any remaining resources, Shubin Interstellar has begun to sell mining rights to the abandoned QV Breaker Stations near the Keeger Belt. But many local miners are wondering what gives Shubin the rights to sell these claims in the first place?\n\nTRIGGERFISH PRANKS ARE ANYTHING BUT FUN\nLearn how to protect yourself from so-called merrymakers as the hurtful holiday once again threatens to ruin everyone\u2019s day with a good time.\n\nLEVSKI JOB FAIR DECLARED SUCCESS\nThe organizers of the recent event which featured numerous contractors in a variety of fields from mining to mercenary work have said that it ha led to a sharp spike in employment rates in Nyx. \n",
+    "sim": 0.036,
+    "edge_old": [
+      "kill",
+      "execute"
+    ],
+    "edge_new": []
+  },
+  {
+    "key": "headhunters_Nyx_bombingrun_M_desc_001",
+    "from": "4.7.0-LIVE",
+    "hard_from": 29.0,
+    "hard_to": 1.0,
+    "gain": 28.0,
+    "old": "Seems we got a bit of competition out here in Nyx. Scouts have spotted a gang holding up at  <EM4>~mission(Location|Address)</EM4>.\n\nNow, I'm a fair man. I sent these nullbrains a message saying they either vacate the facility or we make them wish they had, and they made their choice. So now I need you to fly over there and bomb the life out of the fuel tanks. Let's see how long they stick around without them.\n\n-Stows out",
+    "new": "Seems we got a bit of competition out here in Nyx. Scouts have spotted a gang holding up at  <EM4>~mission(Location|Address)</EM4>.\n\nNow, I'm a fair man. I sent these nullbrains a message saying they either vacate the facility or we make them wish they had, and they made their choice. So now I need you to fly over there and blow the life out of the fuel tanks. Let's see how long they stick around without them.\n\n-Stows out",
+    "sim": 0.993,
+    "edge_old": [
+      "bomb_the_life"
+    ],
+    "edge_new": []
+  },
+  {
+    "key": "headhunters_bombingrun_S_desc_001",
+    "from": "4.7.0-LIVE",
+    "hard_from": 11.0,
+    "hard_to": -9.0,
+    "gain": 20.0,
+    "old": "We've heard news that a new gang are planning a bombing run on a place over at <EM4>~mission(Location|Address)</EM4>. They figure if they can take out the fuel supplies there then it's theirs for the taking.\n\nBut little do they know that we're gonna send you in first to blow the fuel tanks so we can claim the place before they do. If it all goes to plan, we can clear the location out and stick it to that gang at the same time. Two birds, one stone.\n\nOnly problem is this place is armed to the teeth. Bring a crew and get those fuel tanks out of action. We'll take care of the rest.\n\n-Stows out",
+    "new": "We've heard news that a new gang are planning an attack on a place over at <EM4>~mission(Location|Address)</EM4>. They figure if they can take out the fuel supplies there then it's theirs for the taking.\n\nBut little do they know that we're gonna send you in first to blow the fuel tanks so we can claim the place before they do. If it all goes to plan, we can clear the location out and stick it to that gang at the same time. Two birds, one stone.\n\nOnly problem is this place is armed to the teeth. Bring a crew and get those fuel tanks out of action. We'll take care of the rest.\n\n-Stows out",
+    "sim": 0.983,
+    "edge_old": [
+      "bombing_run"
+    ],
+    "edge_new": []
+  },
+  {
+    "key": "Shubin_Industrial_ShipMining_Nyx_E_Local_Desc_001",
+    "from": "4.6.0-PTU",
+    "hard_from": 1.0,
+    "hard_to": -9.0,
+    "gain": 10.0,
+    "old": "POSTING: Industrial\nLOCATION:\u00a0~mission(System)\nREQ EXPERIENCE: Ship Mining\n\nTERMS*: \n\nShubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)</EM4>.\n\n~mission(Hint_Location)\n\nFor a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nAll Shubin Interstellar contractors are expected to provide their own equipment. For this contract you will need a <EM4>~mission(Hint_Tool)</EM4>.\n\nAs we wish to expedite this process as quickly as possible, <EM4>the ore must be refined before it is submitted</EM4>. This can be done at any refinery, the location of which can be found in your starmap.\n\nOnce you have successfully refined the required materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\nDISCLAIMER: As a part of our Employee Incentive Program, Shubin Interstellar is willing to award contractors by <EM4>allowing them to keep any surplus materials that they obtain from this contract</EM4>. This surplus can be sold at a local kiosk at the contractor's discretion.\n\n\n*Shubin Interstellar is an equal opportunity contractor. By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "new": "POSTING: Purchase Order\nLOCATION: <EM4>~mission(System) </EM4>\n\nTERMS*: \nDue to changes in our sourcing pipeline, Shubin Interstellar is currently looking to purchase a variety of refined materials from independent miners operating in the area. While selling at a trade hub may net you a more competitive price than fulfilling our order, many miners find that strengthening their ties to Shubin to be a wise long-term investment for their career.\n\n~mission(Hint_Location) For a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal. While you're there, feel free to read the first part <EM4>Mining Fundamentals #1: Basic Overview</EM4> if you want a refresher on how to get the materials.\n\nSince this is a purchase order and not a mining contract, you are expected to provide your own equipment, such as a <EM4>~mission(Hint_Tool)</EM4>.\n\nPlease note that in an effort to expedite future use of these materials, <EM4>they must be refined before delivery</EM4>. This can be done at any refinery, the locations of which can be found in your Starmap.\n\nOnce you\u2019re ready to sell us the required refined materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\n*By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "sim": 0.093,
+    "edge_old": [],
+    "edge_new": []
+  },
+  {
+    "key": "Shubin_Industrial_ShipMining_Nyx_M_Solar_Desc_001",
+    "from": "4.6.0-PTU",
+    "hard_from": 1.0,
+    "hard_to": -9.0,
+    "gain": 10.0,
+    "old": "POSTING: Industrial\nLOCATION:\u00a0~mission(System)\nREQ EXPERIENCE: Ship Mining\n\nTERMS*: \n\nShubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)</EM4>.\n\n~mission(Hint_Location)\n\nFor a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nAll Shubin Interstellar contractors are expected to provide their own equipment. For this contract you will need a <EM4>~mission(Hint_Tool)</EM4>.\n\nIn an effort to expedite future use of these minerals, <EM4>the ore must be refined before it is submitted</EM4>. This can be done at any refinery, the location of which can be found in your starmap.\n\nOnce you have successfully refined the required materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\nDISCLAIMER: As a part of our Employee Incentive Program, Shubin Interstellar is willing to award contractors by <EM4>allowing them to keep any surplus materials that they obtain from this contract</EM4>. This surplus can be sold at a local kiosk at the contractor's discretion.\n\n\n*Shubin Interstellar is an equal opportunity contractor. By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "new": "POSTING: Purchase Order\nLOCATION: <EM4>~mission(System) </EM4>\n\nTERMS*: \nShubin Interstellar is currently looking to fulfil another purchase order for a variety of refined materials. We appreciate your help in this matter.\n\n~mission(Hint_Location) For a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nSince this is a purchase order and not a mining contract, you are expected to provide your own equipment, such as a <EM4>~mission(Hint_Tool)</EM4>.\n\nPlease note that in an effort to expedite future use of these materials, <EM4>they must be refined before delivery</EM4>. This can be done at any refinery, the locations of which can be found in your Starmap.\n\nOnce you\u2019re ready to sell us the required refined materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\n*By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "sim": 0.13,
+    "edge_old": [],
+    "edge_new": []
+  },
+  {
+    "key": "Shubin_Industrial_ShipMining_Pyro_E_Local_Desc_001",
+    "from": "4.6.0-PTU",
+    "hard_from": 1.0,
+    "hard_to": -9.0,
+    "gain": 10.0,
+    "old": "POSTING: Industrial\nLOCATION:\u00a0~mission(System)\nREQ EXPERIENCE: Ship Mining\n\nTERMS*: \n\nShubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)</EM4>.\n\n~mission(Hint_Location)\n\nFor a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nAll Shubin Interstellar contractors are expected to provide their own equipment. For this contract you will need a <EM4>~mission(Hint_Tool)</EM4>.\n\nAs we wish to expedite this process as quickly as possible, <EM4>the ore must be refined before it is submitted</EM4>. This can be done at any refinery, the location of which can be found in your starmap.\n\nOnce you have successfully refined the required materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\nDISCLAIMER: As a part of our Employee Incentive Program, Shubin Interstellar is willing to award contractors by <EM4>allowing them to keep any surplus materials that they obtain from this contract</EM4>. This surplus can be sold at a local kiosk at the contractor's discretion.\n\n\n*Shubin Interstellar is an equal opportunity contractor. By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "new": "POSTING: Purchase Order\nLOCATION: <EM4>~mission(System) </EM4>\n\nTERMS*: \nDue to changes in our sourcing pipeline, Shubin Interstellar is currently looking to purchase a variety of refined materials from independent miners operating in the area. While selling at a trade hub may net you a more competitive price than fulfilling our order, many miners find that strengthening their ties to Shubin to be a wise long-term investment for their career.\n\n~mission(Hint_Location) For a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal. While you're there, feel free to read the first part <EM4>Mining Fundamentals #1: Basic Overview</EM4> if you want a refresher on how to get the materials.\n\nSince this is a purchase order and not a mining contract, you are expected to provide your own equipment, such as a <EM4>~mission(Hint_Tool)</EM4>.\n\nPlease note that in an effort to expedite future use of these materials, <EM4>they must be refined before delivery</EM4>. This can be done at any refinery, the locations of which can be found in your Starmap.\n\nOnce you\u2019re ready to sell us the required refined materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\n*By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "sim": 0.093,
+    "edge_old": [],
+    "edge_new": []
+  },
+  {
+    "key": "Shubin_Industrial_ShipMining_Pyro_M_Solar_Desc_001",
+    "from": "4.6.0-PTU",
+    "hard_from": 1.0,
+    "hard_to": -9.0,
+    "gain": 10.0,
+    "old": "POSTING: Industrial\nLOCATION:\u00a0~mission(System)\nREQ EXPERIENCE: Ship Mining\n\nTERMS*: \n\nShubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)</EM4>.\n\n~mission(Hint_Location)\n\nFor a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nAll Shubin Interstellar contractors are expected to provide their own equipment. For this contract you will need a <EM4>~mission(Hint_Tool)</EM4>.\n\nIn an effort to expedite future use of these minerals, <EM4>the ore must be refined before it is submitted</EM4>. This can be done at any refinery, the location of which can be found in your starmap.\n\nOnce you have successfully refined the required materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\nDISCLAIMER: As a part of our Employee Incentive Program, Shubin Interstellar is willing to award contractors by <EM4>allowing them to keep any surplus materials that they obtain from this contract</EM4>. This surplus can be sold at a local kiosk at the contractor's discretion.\n\n\n*Shubin Interstellar is an equal opportunity contractor. By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "new": "POSTING: Purchase Order\nLOCATION: <EM4>~mission(System) </EM4>\n\nTERMS*: \nShubin Interstellar is currently looking to fulfil another purchase order for a variety of refined materials. We appreciate your help in this matter.\n\n~mission(Hint_Location) For a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nSince this is a purchase order and not a mining contract, you are expected to provide your own equipment, such as a <EM4>~mission(Hint_Tool)</EM4>.\n\nPlease note that in an effort to expedite future use of these materials, <EM4>they must be refined before delivery</EM4>. This can be done at any refinery, the locations of which can be found in your Starmap.\n\nOnce you\u2019re ready to sell us the required refined materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\n*By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "sim": 0.13,
+    "edge_old": [],
+    "edge_new": []
+  },
+  {
+    "key": "Shubin_Industrial_ShipMining_Pyro_VE_Local_Desc_001",
+    "from": "4.6.0-PTU",
+    "hard_from": 1.0,
+    "hard_to": -9.0,
+    "gain": 10.0,
+    "old": "POSTING: Industrial\nLOCATION:\u00a0~mission(System)\nREQ EXPERIENCE: Ship Mining\n\nTERMS*: \n\nShubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)</EM4>.\n\n~mission(Hint_Location)\n\nFor a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nAll Shubin Interstellar contractors are expected to provide their own equipment. For this contract you will need a <EM4>~mission(Hint_Tool)</EM4>.\n\nIn an effort to expedite future use of these minerals, <EM4>the ore must be refined before it is submitted</EM4>. This can be done at any refinery, the location of which can be found in your starmap.\n\nOnce you have successfully refined the required materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\nDISCLAIMER: As a part of our Employee Incentive Program, Shubin Interstellar is willing to award contractors by <EM4>allowing them to keep any surplus materials that they obtain from this contract</EM4>. This surplus can be sold at a local kiosk at the contractor's discretion.\n\n\n*Shubin Interstellar is an equal opportunity contractor. By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "new": "POSTING: Purchase Order\nLOCATION: <EM4>~mission(System) </EM4>\n\nTERMS*: \nDue to changes in our sourcing pipeline, Shubin Interstellar is currently looking to purchase a variety of refined materials from independent miners operating in the area. While selling at a trade hub may net you a more competitive price than fulfilling our order, many miners find that strengthening their ties to Shubin to be a wise long-term investment for their career.\n\n~mission(Hint_Location) For a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal. While you're there, feel free to read the first part <EM4>Mining Fundamentals #1: Basic Overview</EM4> if you want a refresher on how to get the materials.\n\nSince this is a purchase order and not a mining contract, you are expected to provide your own equipment, such as a <EM4>~mission(Hint_Tool)</EM4>.\n\nPlease note that in an effort to expedite future use of these materials, <EM4>they must be refined before delivery</EM4>. This can be done at any refinery, the locations of which can be found in your Starmap.\n\nOnce you\u2019re ready to sell us the required refined materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\n*By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "sim": 0.09,
+    "edge_old": [],
+    "edge_new": []
+  },
+  {
+    "key": "Shubin_Industrial_ShipMining_Stanton_E_Local_Desc_001",
+    "from": "4.6.0-PTU",
+    "hard_from": 1.0,
+    "hard_to": -9.0,
+    "gain": 10.0,
+    "old": "POSTING: Industrial\nLOCATION:\u00a0~mission(System)\nREQ EXPERIENCE: Ship Mining\n\nTERMS*: \n\nShubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)</EM4>.\n\n~mission(Hint_Location)\n\nFor a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nAll Shubin Interstellar contractors are expected to provide their own equipment. For this contract you will need a <EM4>~mission(Hint_Tool)</EM4>.\n\nAs we wish to expedite this process as quickly as possible, <EM4>the ore must be refined before it is submitted</EM4>. This can be done at any refinery, the location of which can be found in your starmap.\n\nOnce you have successfully refined the required materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\nDISCLAIMER: As a part of our Employee Incentive Program, Shubin Interstellar is willing to award contractors by <EM4>allowing them to keep any surplus materials that they obtain from this contract</EM4>. This surplus can be sold at a local kiosk at the contractor's discretion.\n\n\n*Shubin Interstellar is an equal opportunity contractor. By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "new": "POSTING: Purchase Order\nLOCATION: <EM4>~mission(System) </EM4>\n\nTERMS*: \nDue to changes in our sourcing pipeline, Shubin Interstellar is currently looking to purchase a variety of refined materials from independent miners operating in the area. While selling at a trade hub may net you a more competitive price than fulfilling our order, many miners find that strengthening their ties to Shubin to be a wise long-term investment for their career.\n\n~mission(Hint_Location) For a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal. While you're there, feel free to read the first part <EM4>Mining Fundamentals #1: Basic Overview</EM4> if you want a refresher on how to get the materials.\n\nSince this is a purchase order and not a mining contract, you are expected to provide your own equipment, such as a <EM4>~mission(Hint_Tool)</EM4>.\n\nPlease note that in an effort to expedite future use of these materials, <EM4>they must be refined before delivery</EM4>. This can be done at any refinery, the locations of which can be found in your Starmap.\n\nOnce you\u2019re ready to sell us the required refined materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\n*By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "sim": 0.093,
+    "edge_old": [],
+    "edge_new": []
+  },
+  {
+    "key": "Shubin_Industrial_ShipMining_Stanton_M_Solar_Desc_001",
+    "from": "4.6.0-PTU",
+    "hard_from": 1.0,
+    "hard_to": -9.0,
+    "gain": 10.0,
+    "old": "POSTING: Industrial\nLOCATION:\u00a0~mission(System)\nREQ EXPERIENCE: Ship Mining\n\nTERMS*: \n\nShubin Interstellar is in need of a variety of ore, mineable from numerous locations across <EM4>~mission(System)</EM4>.\n\n~mission(Hint_Location)\n\nFor a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nAll Shubin Interstellar contractors are expected to provide their own equipment. For this contract you will need a <EM4>~mission(Hint_Tool)</EM4>.\n\nIn an effort to expedite future use of these minerals, <EM4>the ore must be refined before it is submitted</EM4>. This can be done at any refinery, the location of which can be found in your starmap.\n\nOnce you have successfully refined the required materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\nDISCLAIMER: As a part of our Employee Incentive Program, Shubin Interstellar is willing to award contractors by <EM4>allowing them to keep any surplus materials that they obtain from this contract</EM4>. This surplus can be sold at a local kiosk at the contractor's discretion.\n\n\n*Shubin Interstellar is an equal opportunity contractor. By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "new": "POSTING: Purchase Order\nLOCATION: <EM4>~mission(System) </EM4>\n\nTERMS*: \nShubin Interstellar is currently looking to fulfil another purchase order for a variety of refined materials. We appreciate your help in this matter.\n\n~mission(Hint_Location) For a comprehensive list of where to find these minerals, consult <EM4>Mining Fundamentals #2: Where to Mine</EM4> in your mobiGlas Journal.\n\nSince this is a purchase order and not a mining contract, you are expected to provide your own equipment, such as a <EM4>~mission(Hint_Tool)</EM4>.\n\nPlease note that in an effort to expedite future use of these materials, <EM4>they must be refined before delivery</EM4>. This can be done at any refinery, the locations of which can be found in your Starmap.\n\nOnce you\u2019re ready to sell us the required refined materials, deposit them in the freight elevator located at <EM4>~mission(Destination|Address)</EM4>.\n\n*By accepting this contract you are assuming any and all risks associated with the work outlined herein and in no way can Shubin Interstellar be held accountable for any damages accrued during the duration of the contract.",
+    "sim": 0.13,
+    "edge_old": [],
+    "edge_new": []
+  },
+  {
+    "key": "Stanton3a_Desc,P",
+    "from": "4.6.0-LIVE",
+    "hard_from": 1.0,
+    "hard_to": 0.0,
+    "gain": 1.0,
+    "old": "This icy moon features active cryogeysers and cryovolcanoes.\n\nPotential Ship Mineables:\nBeryl\nHephasestanite\nAgricium\nLaranite\nBorase\nGold\nTaranite\nBexalite\nQuantanium\nQuartz\nCorundum\nTungsten\n\nPotential Hand Mineables:\nHadanite\nAphorite\nDolivine",
+    "new": "This icy moon features active cryogeysers and cryovolcanoes.\n\nPotential Ship Mineables:\nIron\nCopper\nLaranite\nQuantainium\n\nPotential Hand Mineables:\nAphorite\nDolivine\nJanalite",
+    "sim": 0.738,
+    "edge_old": [],
+    "edge_new": []
+  },
+  {
+    "key": "item_Desc_ops_pants_02_01_01",
+    "from": "4.3.2-LIVE",
+    "hard_from": 1.0,
+    "hard_to": 0.0,
+    "gain": 1.0,
+    "old": "Carrying Capacity: 0.5K \u00b5SCU\n\nCut to a narrow fit, OpalSky's Mivaldi pants feature bold asymmetrical design with smart yet casual dual material styling, making it the perfect addition to any wardrobe.\n\nWomen's sizes currently out of stock.",
+    "new": "Carrying Capacity: 0.5K \u00b5SCU\n\nCut to a narrow fit, OpalSky's Mivaldi pants feature bold asymmetrical design with smart yet casual dual material styling, making it the perfect addition to any wardrobe.",
+    "sim": 0.911,
+    "edge_old": [],
+    "edge_new": []
+  },
+  {
+    "key": "vehicle_DescAEGS_Retaliator",
+    "from": "4.3.2-LIVE",
+    "hard_from": 1.0,
+    "hard_to": 0.0,
+    "gain": 1.0,
+    "old": "Manufacturer: Aegis Dynamics\nFocus:\u00a0Heavy Gunship\n\nThis civilian refit of the Retaliator updates the military ship's chassis with unladen space able to be fitted with various modules to suit your needs.",
+    "new": "Manufacturer: Aegis Dynamics\nFocus:\u00a0Modular\n\nThis civilian refit of the Retaliator updates the military ship's chassis with unladen space able to be fitted with various modules to suit your needs.",
+    "sim": 0.955,
+    "edge_old": [],
+    "edge_new": []
+  }
+]
