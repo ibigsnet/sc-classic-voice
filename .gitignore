@@ -17,3 +17,7 @@ venv/
 *~
 .DS_Store
 *.zip
+
+# Personal merge previews (may contain private renames / Ironchad / etc.)
+packs/preview/*.ini
+!packs/preview/README.md
